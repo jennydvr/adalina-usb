@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0071C05916C1899100DA8AC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C05816C1899100DA8AC9 /* main.cpp */; };
-		0071C05B16C1899100DA8AC9 /* adalina_usb.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0071C05A16C1899100DA8AC9 /* adalina_usb.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +17,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				0071C05B16C1899100DA8AC9 /* adalina_usb.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -27,7 +25,6 @@
 /* Begin PBXFileReference section */
 		0071C05416C1899100DA8AC9 /* adalina-usb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "adalina-usb"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0071C05816C1899100DA8AC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		0071C05A16C1899100DA8AC9 /* adalina_usb.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = adalina_usb.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				0071C05816C1899100DA8AC9 /* main.cpp */,
-				0071C05A16C1899100DA8AC9 /* adalina_usb.1 */,
 			);
 			path = "adalina-usb";
 			sourceTree = "<group>";
