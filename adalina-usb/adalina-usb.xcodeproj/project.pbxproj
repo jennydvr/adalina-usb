@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0071C05916C1899100DA8AC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C05816C1899100DA8AC9 /* main.cpp */; };
+		0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06116C19B8300DA8AC9 /* neuron.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		0071C05416C1899100DA8AC9 /* adalina-usb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "adalina-usb"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0071C05816C1899100DA8AC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		0071C06116C19B8300DA8AC9 /* neuron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neuron.cpp; sourceTree = "<group>"; };
+		0071C06216C19B8300DA8AC9 /* neuron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neuron.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				0071C05816C1899100DA8AC9 /* main.cpp */,
+				0071C06116C19B8300DA8AC9 /* neuron.cpp */,
+				0071C06216C19B8300DA8AC9 /* neuron.h */,
 			);
 			path = "adalina-usb";
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0071C05916C1899100DA8AC9 /* main.cpp in Sources */,
+				0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
