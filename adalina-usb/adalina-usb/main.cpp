@@ -2,8 +2,8 @@
 //  main.cpp
 //  adalina-usb
 //
-//  Created by Jenny Valdez on 05/02/13.
-//  Copyright (c) 2013 Jenny Valdez. All rights reserved.
+//  Created by Jenny Valdez & Luis Vieira on 05/02/13.
+//  Copyright (c) 2013 Jenny Valdez & Luis Vieira. All rights reserved.
 //
 
 #include <iostream>
