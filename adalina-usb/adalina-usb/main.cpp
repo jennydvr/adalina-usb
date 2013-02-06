@@ -18,13 +18,21 @@ int main(int argc, const char * argv[])
     
     Neuron neuron;
     
+    // Inputs - version chimba
+    vector<vector<float> > input;
+    
     for (int i = 0; i != 4; ++i) {
-        int real = results[i];
+        input.push_back(vector<float>(inputValues[i], inputValues[i] + 2));
+        input[i].push_back(1);
+    }
+    
+    for (int e = 0; e != 20; ++e) {
         
-        vector<float> input = vector<float>(inputValues[i], inputValues[i] + 2);
-        input.push_back(1);
-        
-        neuron.analize(input, real);
+        cout << e << endl;
+        for (int i = 0; i != input.size(); ++i) {
+            neuron.analize(input[i], results[i]);
+            cout << endl;
+        }
     }
     
     return 0;

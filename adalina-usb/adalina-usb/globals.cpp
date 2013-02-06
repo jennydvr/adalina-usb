@@ -12,9 +12,9 @@
 
 int inputValues[4][2] = {{1, 1}, {1, 0}, {0, 1}, {0, 0}};
 
-int andResults[4] = {1, 0, 0, 0};
-int orResults[4] = {1, 1, 1, 0};
-int xorResults[4] = {0, 1, 1, 0};
+int andResults[4] = {1, -1, -1, -1};
+int orResults[4] = {1, 1, 1, -1};
+int xorResults[4] = {-1, 1, 1, -1};
 
 
 // Global variables
