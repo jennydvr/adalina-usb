@@ -16,10 +16,12 @@ extern bool training;
 extern int numInputs;
 
 extern int inputValues[4][2];
+extern int andResults[4];
 
+// Vector que contiene todos los casos de prueba
 extern std::vector<std::vector<float>> testCases;
-extern std::vector<float> testResults;
 
-extern std::vector<int> results;
+// Vector que contiene el valor resultante de cada caso
+extern std::vector<float> testResults;
 
 #endif /* defined(__adalina_usb__globals__) */

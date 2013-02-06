@@ -21,4 +21,5 @@ int xorResults[4] = {-1, 1, 1, -1};
 
 bool training = true;
 int numInputs = 2;
-std::vector<int> results = std::vector<int>(andResults, andResults + 4);
+std::vector<std::vector<float>> testCases;
+std::vector<float> testResults;

@@ -16,24 +16,32 @@ int main(int argc, const char * argv[])
     cout << "Hello!\nTraining for: ";
     cout << "AND\n";
     
-    Neuron neuron;
-    
-    // Inputs - version chimba
-    vector<vector<float> > input;
+    // Creacion de inputs - version chimba
     
     for (int i = 0; i != 4; ++i) {
-        input.push_back(vector<float>(inputValues[i], inputValues[i] + 2));
-        input[i].push_back(1);
+        testCases.push_back(vector<float>(inputValues[i], inputValues[i] + 2));
+        testCases[i].push_back(1);
+        
+        testResults.push_back(andResults[i]);
     }
     
-    for (int e = 0; e != 20; ++e) {
+    // Inicializacion de parametros
+    Neuron neuron;
+    int it = 0;
+    float error = 1;
+    
+    while (error > 0.1 & it < 1000 * testCases.size()) {
         
-        cout << e << endl;
-        for (int i = 0; i != input.size(); ++i) {
-            neuron.analize(input[i], results[i]);
-            cout << endl;
-        }
+        // Analisis del caso
+        int numCase = it % testCases.size();
+        neuron.analize(testCases[numCase], testResults[numCase]);
+        
+        cout << "    " << it++ << " : ";
+        printf("%1.2f\n", (error = neuron.calculateError()));
     }
+    
+    cout << "\nResults:\n";
+    cout << "   Iterations per case: " << it / testCases.size() << endl;
     
     return 0;
 }
