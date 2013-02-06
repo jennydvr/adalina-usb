@@ -22,7 +22,6 @@ float Neuron::calculateOutput(vector<float> input) {
 }
 
 void Neuron::update(vector<float> input, float output, float real) {
-    // Metodo de actualizacion de perceptrones
     for (int i = 0; i != weights.size(); ++i)
         weights[i] += trainingRate * (real - output) * input[i];
 }

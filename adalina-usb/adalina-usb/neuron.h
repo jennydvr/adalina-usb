@@ -27,11 +27,11 @@ protected:
     // Tasa de aprendizaje
     float trainingRate;
     
-    // Calcula la salidad de acuerdo a la entrada y los pesos de la neurona
-    float calculateOutput(vector<float> input);
+    // Calcula la salida de acuerdo a la entrada y los pesos de la neurona
+    virtual float calculateOutput(vector<float> input);
     
-    // Actualiza los pesos
-    void update(vector<float> input, float output, float real);
+    // Actualiza los pesos de acuerdo al metodo de perceptrones
+    virtual void update(vector<float> input, float output, float real);
     
 public:
     
