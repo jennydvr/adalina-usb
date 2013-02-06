@@ -17,6 +17,9 @@ extern int numInputs;
 
 extern int inputValues[4][2];
 
+extern std::vector<std::vector<float>> testCases;
+extern std::vector<float> testResults;
+
 extern std::vector<int> results;
 
 #endif /* defined(__adalina_usb__globals__) */

@@ -21,19 +21,28 @@ class Neuron {
     
 protected:
     
+    // Vector de pesos
     vector<float> weights;
     
+    // Tasa de aprendizaje
     float trainingRate;
     
-    int calculateOutput(vector<float> input);
+    // Calcula la salidad de acuerdo a la entrada y los pesos de la neurona
+    float calculateOutput(vector<float> input);
     
-    void update(vector<float> input, int output, int real);
+    // Actualiza los pesos
+    void update(vector<float> input, float output, float real);
     
 public:
     
+    // Inicializa una neurona
     Neuron();
     
-    int analize(vector<float> input, int real = numeric_limits<int>::max());
+    // Analiza un input, y compara el output con el valor real (en caso de entrenamiento)
+    float analize(vector<float> input, float real = numeric_limits<float>::max());
+    
+    // Calcula el error cuadratico medio
+    float calculateError();
     
 };
 
