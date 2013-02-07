@@ -31,6 +31,8 @@
 		0071C05816C1899100DA8AC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0071C06116C19B8300DA8AC9 /* neuron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neuron.cpp; sourceTree = "<group>"; };
 		0071C06216C19B8300DA8AC9 /* neuron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neuron.h; sourceTree = "<group>"; };
+		0071C07D16C4269B00DA8AC9 /* bupa.data */ = {isa = PBXFileReference; lastKnownFileType = text; name = bupa.data; path = "../../../../Library/Developer/Xcode/DerivedData/adalina-usb-affhfyfccbjnhcauvtrbmeqlbxef/Build/Products/Debug/bupa.data"; sourceTree = "<group>"; };
+		0071C07E16C4269B00DA8AC9 /* inputAnd */ = {isa = PBXFileReference; lastKnownFileType = text; name = inputAnd; path = "../../../../Library/Developer/Xcode/DerivedData/adalina-usb-affhfyfccbjnhcauvtrbmeqlbxef/Build/Products/Debug/inputAnd"; sourceTree = "<group>"; };
 		2E56BB8616C410F8007FB505 /* adaline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adaline.cpp; sourceTree = "<group>"; };
 		2E56BB8716C410F8007FB505 /* adaline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adaline.h; sourceTree = "<group>"; };
 		2E56BB8A16C41602007FB505 /* training.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = training.cpp; sourceTree = "<group>"; };

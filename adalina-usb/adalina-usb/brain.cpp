@@ -38,9 +38,12 @@ void Brain::Train(int numNeurons,const char * casesFile ,float _minError, int ma
     isTraining = true;
     minError = _minError;
     
+    cout << "Reading file: " << casesFile << endl;
+    
     readInputs(casesFile);
     
-
+    cout << "Done! Analizing..." << endl;
+    
     initNeuron(type);
     
     int it = 0;
@@ -53,14 +56,16 @@ void Brain::Train(int numNeurons,const char * casesFile ,float _minError, int ma
         
         neurons->analize(testCases[numCase], testResults[numCase]);
         
-        cout << "    " << it++ << " : ";
+        cout << it++ << ";";
         printf("%1.2f\n", (error = neurons->calculateError()));
     }
     
     cout << "\nResults:\n";
-    cout << "   Iterations per case: " << it / testCases.size() << endl;
-    
+    printf("    Number of iterations: %d\n", it);
+    printf("    Iterations per case: %1.2f\n", ((float)it / testCases.size()));
+    printf("    Final error: %1.2f\n", error);
 }
+
 void Brain::readInputs(const char * casesFile)
 {
     numVariables = -1;
@@ -76,20 +81,17 @@ void Brain::readInputs(const char * casesFile)
             if (!myfile.good()) {
                 break;
             }
-            std::cout << "\nline: "<< line<< std::endl;
+            
             strs = split(line,',',1);
             std::vector<float> firstValues;
             for (size_t n = 0; n < strs.size()-1; n++)
             {
-                std::cout << "InputValue: "<< strs[n] << std::endl;
                 firstValues.push_back((float)atof(strs[n].c_str()));
             }
             firstValues.push_back(1);
             testCases.push_back(firstValues);
             testResults.push_back((float)atof(strs[strs.size()-1].c_str()));
-              std::cout << "ResultValue: "<< testResults[testResults.size()-1] << std::endl;
             
-
         }
         myfile.close();
         if (numVariables == -1)
@@ -102,7 +104,6 @@ void Brain::readInputs(const char * casesFile)
         std::cout << "Unable to open file" << std::endl;
         exit(1);
     }
-
 }
 
 std::vector<std::string> Brain::split(std::string work,char delim, int rep)
