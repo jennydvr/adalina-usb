@@ -10,6 +10,7 @@
 		0071C05916C1899100DA8AC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C05816C1899100DA8AC9 /* main.cpp */; };
 		0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06116C19B8300DA8AC9 /* neuron.cpp */; };
 		0071C06616C19FD900DA8AC9 /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06416C19FD900DA8AC9 /* globals.cpp */; };
+		0071C06916C2E38500DA8AC9 /* adaline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06716C2E38500DA8AC9 /* adaline.cpp */; };
 		2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E61F13616C2E1A600E80CC4 /* brain.cpp */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,8 @@
 		0071C06216C19B8300DA8AC9 /* neuron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neuron.h; sourceTree = "<group>"; };
 		0071C06416C19FD900DA8AC9 /* globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globals.cpp; sourceTree = "<group>"; };
 		0071C06516C19FD900DA8AC9 /* globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
+		0071C06716C2E38500DA8AC9 /* adaline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adaline.cpp; sourceTree = "<group>"; };
+		0071C06816C2E38500DA8AC9 /* adaline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adaline.h; sourceTree = "<group>"; };
 		2E61F13616C2E1A600E80CC4 /* brain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brain.cpp; sourceTree = "<group>"; };
 		2E61F13716C2E1A600E80CC4 /* brain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brain.h; sourceTree = "<group>"; };
 		2E61F13A16C33A1000E80CC4 /* inputAnd */ = {isa = PBXFileReference; lastKnownFileType = text; name = inputAnd; path = "../../../../../Library/Developer/Xcode/DerivedData/adalina-usb-fdrbwhkosssqxmakioivmpqrmfep/Build/Products/Debug/inputAnd"; sourceTree = "<group>"; };
@@ -73,6 +76,8 @@
 				0071C06216C19B8300DA8AC9 /* neuron.h */,
 				0071C06416C19FD900DA8AC9 /* globals.cpp */,
 				0071C06516C19FD900DA8AC9 /* globals.h */,
+				0071C06716C2E38500DA8AC9 /* adaline.cpp */,
+				0071C06816C2E38500DA8AC9 /* adaline.h */,
 				2E61F13616C2E1A600E80CC4 /* brain.cpp */,
 				2E61F13716C2E1A600E80CC4 /* brain.h */,
 				2E61F13A16C33A1000E80CC4 /* inputAnd */,
@@ -135,6 +140,7 @@
 				0071C05916C1899100DA8AC9 /* main.cpp in Sources */,
 				0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */,
 				0071C06616C19FD900DA8AC9 /* globals.cpp in Sources */,
+				0071C06916C2E38500DA8AC9 /* adaline.cpp in Sources */,
 				2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
