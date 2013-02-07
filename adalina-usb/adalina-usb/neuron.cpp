@@ -10,7 +10,7 @@
 
 Neuron::Neuron() {
     // Inicializa el vector de pesos
-    weights = vector<float>(numInputs + 1, 0.05f);
+    weights = vector<float>(Brain::Instance()->getNumberOfInputs() + 1, 0.05f);
     
     // Inicializa la tasa de aprendizaje
     trainingRate = 0.1;
@@ -32,7 +32,7 @@ float Neuron::analize(vector<float> input, float real) {
     float output = calculateOutput(input);
     
     // Si la neurona esta siendo entrenada, actualiza pesos
-    if (training & (real != numeric_limits<double>::infinity()))
+    if (Brain::Instance()->getIsTraning() & (real != numeric_limits<double>::infinity()))
         update(input, output, real);
     
     return output;
@@ -42,8 +42,8 @@ float Neuron::calculateError() {
     // Error : Sumatoria((t[i] - o[i]) * (t[i] - o[i])) / 2
     float error = 0;
     
-    for (int i = 0; i != testCases.size(); ++i) {
-        float aux = testResults[i] - calculateOutput(testCases[i]);
+    for (int i = 0; i != Brain::Instance()->getTestCases().size(); ++i) {
+        float aux = Brain::Instance()->getTestResult()[i] - calculateOutput(Brain::Instance()->getTestCases()[i]);
         error += aux * aux;
     }
     

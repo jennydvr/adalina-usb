@@ -13,7 +13,8 @@
 #include <vector>
 #include <numeric>
 #include <limits>
-#include "globals.h"
+//#include "globals.h"
+#include "brain.h"
 
 using namespace std;
 

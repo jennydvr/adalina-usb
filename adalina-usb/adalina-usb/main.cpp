@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include "neuron.h"
+#include "brain.h"
 
 using namespace std;
 
@@ -16,8 +16,9 @@ int main(int argc, const char * argv[])
     cout << "Hello!\nTraining for: ";
     cout << "AND\n";
     
+    Brain::Instance()->Train(1, "inputAnd", 0.1, 1000);
     // Creacion de inputs - version chimba
-    
+    /*
     for (int i = 0; i != 4; ++i) {
         testCases.push_back(vector<float>(inputValues[i], inputValues[i] + 2));
         testCases[i].push_back(1);
@@ -41,7 +42,7 @@ int main(int argc, const char * argv[])
     }
     
     cout << "\nResults:\n";
-    cout << "   Iterations per case: " << it / testCases.size() << endl;
+    cout << "   Iterations per case: " << it / testCases.size() << endl;*/
     
     return 0;
 }
