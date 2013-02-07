@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		0071C05916C1899100DA8AC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C05816C1899100DA8AC9 /* main.cpp */; };
 		0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06116C19B8300DA8AC9 /* neuron.cpp */; };
-		0071C06616C19FD900DA8AC9 /* globals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06416C19FD900DA8AC9 /* globals.cpp */; };
-		0071C06916C2E38500DA8AC9 /* adaline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06716C2E38500DA8AC9 /* adaline.cpp */; };
+		2E56BB8816C410F8007FB505 /* adaline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E56BB8616C410F8007FB505 /* adaline.cpp */; };
+		2E56BB8C16C41602007FB505 /* training.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E56BB8A16C41602007FB505 /* training.cpp */; };
 		2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E61F13616C2E1A600E80CC4 /* brain.cpp */; };
 /* End PBXBuildFile section */
 
@@ -31,10 +31,10 @@
 		0071C05816C1899100DA8AC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0071C06116C19B8300DA8AC9 /* neuron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neuron.cpp; sourceTree = "<group>"; };
 		0071C06216C19B8300DA8AC9 /* neuron.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neuron.h; sourceTree = "<group>"; };
-		0071C06416C19FD900DA8AC9 /* globals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = globals.cpp; sourceTree = "<group>"; };
-		0071C06516C19FD900DA8AC9 /* globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = globals.h; sourceTree = "<group>"; };
-		0071C06716C2E38500DA8AC9 /* adaline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adaline.cpp; sourceTree = "<group>"; };
-		0071C06816C2E38500DA8AC9 /* adaline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adaline.h; sourceTree = "<group>"; };
+		2E56BB8616C410F8007FB505 /* adaline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adaline.cpp; sourceTree = "<group>"; };
+		2E56BB8716C410F8007FB505 /* adaline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adaline.h; sourceTree = "<group>"; };
+		2E56BB8A16C41602007FB505 /* training.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = training.cpp; sourceTree = "<group>"; };
+		2E56BB8B16C41602007FB505 /* training.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = training.h; sourceTree = "<group>"; };
 		2E61F13616C2E1A600E80CC4 /* brain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brain.cpp; sourceTree = "<group>"; };
 		2E61F13716C2E1A600E80CC4 /* brain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brain.h; sourceTree = "<group>"; };
 		2E61F13A16C33A1000E80CC4 /* inputAnd */ = {isa = PBXFileReference; lastKnownFileType = text; name = inputAnd; path = "../../../../../Library/Developer/Xcode/DerivedData/adalina-usb-fdrbwhkosssqxmakioivmpqrmfep/Build/Products/Debug/inputAnd"; sourceTree = "<group>"; };
@@ -71,17 +71,17 @@
 		0071C05716C1899100DA8AC9 /* adalina-usb */ = {
 			isa = PBXGroup;
 			children = (
+				2E56BB8616C410F8007FB505 /* adaline.cpp */,
+				2E56BB8716C410F8007FB505 /* adaline.h */,
+				2E61F13616C2E1A600E80CC4 /* brain.cpp */,
+				2E61F13716C2E1A600E80CC4 /* brain.h */,
+				2E61F13B16C33C1200E80CC4 /* bupa.data */,
+				2E61F13A16C33A1000E80CC4 /* inputAnd */,
 				0071C05816C1899100DA8AC9 /* main.cpp */,
 				0071C06116C19B8300DA8AC9 /* neuron.cpp */,
 				0071C06216C19B8300DA8AC9 /* neuron.h */,
-				0071C06416C19FD900DA8AC9 /* globals.cpp */,
-				0071C06516C19FD900DA8AC9 /* globals.h */,
-				0071C06716C2E38500DA8AC9 /* adaline.cpp */,
-				0071C06816C2E38500DA8AC9 /* adaline.h */,
-				2E61F13616C2E1A600E80CC4 /* brain.cpp */,
-				2E61F13716C2E1A600E80CC4 /* brain.h */,
-				2E61F13A16C33A1000E80CC4 /* inputAnd */,
-				2E61F13B16C33C1200E80CC4 /* bupa.data */,
+				2E56BB8A16C41602007FB505 /* training.cpp */,
+				2E56BB8B16C41602007FB505 /* training.h */,
 			);
 			path = "adalina-usb";
 			sourceTree = "<group>";
@@ -139,9 +139,9 @@
 			files = (
 				0071C05916C1899100DA8AC9 /* main.cpp in Sources */,
 				0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */,
-				0071C06616C19FD900DA8AC9 /* globals.cpp in Sources */,
-				0071C06916C2E38500DA8AC9 /* adaline.cpp in Sources */,
 				2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */,
+				2E56BB8816C410F8007FB505 /* adaline.cpp in Sources */,
+				2E56BB8C16C41602007FB505 /* training.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +168,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -192,6 +193,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -204,6 +206,7 @@
 		0071C05F16C1899100DA8AC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -211,6 +214,7 @@
 		0071C06016C1899100DA8AC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

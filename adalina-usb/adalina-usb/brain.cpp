@@ -32,11 +32,11 @@ void Brain::initNeuron(Type_Neuron type)
     }
 }
 
-void Brain::Train(int numNeurons,const char * casesFile ,float minError, int maxIter, Type_Neuron type)
+void Brain::Train(int numNeurons,const char * casesFile ,float _minError, int maxIter, Type_Neuron type)
 {
     //Set values for training
     isTraining = true;
-    this->minError = minError;
+    minError = _minError;
     
     readInputs(casesFile);
     
@@ -46,10 +46,10 @@ void Brain::Train(int numNeurons,const char * casesFile ,float minError, int max
     int it = 0;
     float error = std::numeric_limits<float>::max();
     
-    while (error > this->minError & it < maxIter * testCases.size())
+    while (error > minError & it < maxIter * testCases.size())
     {
         // Analisis del caso
-        int numCase = it % testCases.size();
+        int numCase = (int)(it % testCases.size());
         
         neurons->analize(testCases[numCase], testResults[numCase]);
         
@@ -63,7 +63,7 @@ void Brain::Train(int numNeurons,const char * casesFile ,float minError, int max
 }
 void Brain::readInputs(const char * casesFile)
 {
-    numInputs = -1;
+    numVariables = -1;
     std::string line;
     std::vector<std::string> strs;
 
@@ -84,16 +84,18 @@ void Brain::readInputs(const char * casesFile)
                 std::cout << "InputValue: "<< strs[n] << std::endl;
                 firstValues.push_back((float)atof(strs[n].c_str()));
             }
+            firstValues.push_back(1);
             testCases.push_back(firstValues);
             testResults.push_back((float)atof(strs[strs.size()-1].c_str()));
               std::cout << "ResultValue: "<< testResults[testResults.size()-1] << std::endl;
-            if (numInputs == -1)
-            {
-                numInputs = (int) testCases.size();
-            }
+            
 
         }
         myfile.close();
+        if (numVariables == -1)
+        {
+            numVariables = (int) testCases[0].size();
+        }
     }
     else
     {

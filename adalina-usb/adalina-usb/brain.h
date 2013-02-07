@@ -12,7 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include "adaline.h"
-class Neuron;
+#include "Training.h"
 
 enum Type_Neuron { NEURON, BATCH_ADALINE , INCREMENTAL_ADALINE};
 class Brain{
@@ -21,14 +21,7 @@ protected:
     Neuron * neurons;
     static Brain * instance;
     
-    //------- Training ------//
-    int numInputs;
-    float minError;
-    bool isTraining;
-    std::vector < std::vector <float> > testCases;
-    std::vector <float> testResults;
-    //------
-    
+
     /*
         Read casesFile and get the testCases and testResults
      */
@@ -39,6 +32,9 @@ protected:
      */
     std::vector<std::string> split(std::string work,char delim, int rep);
     
+    /*
+     Inicialize one nueron by the Type_Neuron
+     */
     void initNeuron(Type_Neuron type);
 public:
 
@@ -49,38 +45,6 @@ public:
      maximun of iterator.
      */
     void Train(int numNeurons, const char * casesFile ,float minError, int maxIter,Type_Neuron type);
-    
-    /*
-     Get the number of input for TestCases.
-     */
-    int getNumberOfInputs()
-    {
-        return numInputs;
-    }
-    
-    /*
-     Get if the brain is training.
-     */
-    bool getIsTraning()
-    {
-        return isTraining;
-    }
-
-    /*
-     Get the cases for test in the training.
-     */
-    std::vector < std::vector <float> > getTestCases()
-    {
-        return testCases;
-    }
-    
-    /*
-     Get the result for test in the training.
-     */
-    std::vector <float>  getTestResult()
-    {
-        return testResults;
-    }
 
 };
 #endif /* defined(__adalina_usb__brain__) */

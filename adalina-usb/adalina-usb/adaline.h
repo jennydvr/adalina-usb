@@ -11,13 +11,17 @@
 
 #include <iostream>
 #include "neuron.h"
-#include "brain.h"
+
+
+
+
+
 class BatchAdaline : public Neuron {
     
 protected:
     
     // Actualiza los pesos de acuerdo a la regla delta batch
-    virtual void update(vector<float> input, float output, float real);
+    virtual void update(std::vector < float > input, float output, float real);
     
 };
 
@@ -26,7 +30,7 @@ class IncrementalAdaline : public Neuron {
 protected:
     
     // Actualiza los pesos de acuerdo a la regla delta incremental
-    virtual void update(vector<float> input, float output, float real);
+    virtual void update(std::vector< float > input, float output, float real);
     
 };
 
