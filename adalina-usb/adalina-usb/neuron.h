@@ -38,6 +38,7 @@ public:
     
     // Inicializa una neurona
     Neuron();
+    Neuron(float trainingRate);
     
     // Analiza un input, y compara el output con el valor real (en caso de entrenamiento)
     float analize(vector<float> input, float real = numeric_limits<float>::max());

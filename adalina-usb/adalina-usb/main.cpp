@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    int type =  atoi(argv[5]);
+    int type =  atoi(argv[6]);
     Type_Neuron tipe = NEURON;
     switch (type) {
         case 1:
@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
         default:
             break;
     }
-    Brain::Instance()->Train(atoi(argv[1]), argv[2], (float)atof(argv[3]), atoi(argv[4]),tipe);
+    Brain::Instance()->Train(atoi(argv[1]), argv[2], (float)atof(argv[4]),(float)atof(argv[4]), atoi(argv[5]),tipe);
     // Creacion de inputs - version chimba
     /*
     for (int i = 0; i != 4; ++i) {

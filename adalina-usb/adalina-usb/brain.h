@@ -9,6 +9,7 @@
 #ifndef __adalina_usb__brain__
 #define __adalina_usb__brain__
 
+#include <sstream>
 #include <iostream>
 #include <fstream>
 #include "adaline.h"
@@ -35,7 +36,13 @@ protected:
     /*
      Inicialize one nueron by the Type_Neuron
      */
-    void initNeuron(Type_Neuron type);
+    void initNeuron(Type_Neuron type, float _trainingRate);
+  
+    FILE * initFile(const char * name);
+    
+    void closeFile(FILE * archivo);
+    
+    void writeFile( FILE * archivo,int iter, float error);
 public:
 
     static Brain * Instance();
@@ -44,7 +51,7 @@ public:
      Train the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator.
      */
-    void Train(int numNeurons, const char * casesFile ,float minError, int maxIter,Type_Neuron type);
+    void Train(int numNeurons, const char * casesFile , float trainingRate,float minError, int maxIter,Type_Neuron type);
 
 };
 #endif /* defined(__adalina_usb__brain__) */

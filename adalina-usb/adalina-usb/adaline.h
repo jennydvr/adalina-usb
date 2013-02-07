@@ -22,6 +22,11 @@ protected:
     
     // Actualiza los pesos de acuerdo a la regla delta batch
     virtual void update(std::vector < float > input, float output, float real);
+public:
+    BatchAdaline(float _trainingRate) : Neuron(_trainingRate)
+    {
+        
+    }
     
 };
 
@@ -31,7 +36,11 @@ protected:
     
     // Actualiza los pesos de acuerdo a la regla delta incremental
     virtual void update(std::vector< float > input, float output, float real);
-    
+public:
+    IncrementalAdaline(float _trainingRate) : Neuron(_trainingRate)
+    {
+        
+    }
 };
 
 #endif /* defined(__adalina_usb__adaline__) */

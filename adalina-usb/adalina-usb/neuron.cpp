@@ -16,6 +16,14 @@ Neuron::Neuron() {
     trainingRate = 0.1f;
 }
 
+Neuron::Neuron(float trainingRate) {
+    // Inicializa el vector de pesos
+    weights = vector<float>(numVariables , 0.05f);
+    
+    // Inicializa la tasa de aprendizaje
+    this->trainingRate = trainingRate;
+}
+
 float Neuron::calculateOutput(vector<float> input) {
     // Output : if  Sumatoria(w[i] * x[i]) > 0  then  1  else  -1
     return inner_product(input.begin(), input.end(), weights.begin(), 0) > 0 ? 1 : -1;
@@ -40,11 +48,11 @@ float Neuron::analize(vector<float> input, float real) {
 float Neuron::calculateError() {
     // Error : Sumatoria((t[i] - o[i]) * (t[i] - o[i])) / 2
     float error = 0;
-    
-    for (int i = 0; i != testCases.size(); ++i) {
+    int numCases =(int) testCases.size();
+    for (int i = 0; i !=numCases ; ++i) {
         float aux = testResults[i] - calculateOutput(testCases[i]);
         error += aux * aux;
     }
     
-    return error / 2;
+    return error / numCases;
 }
