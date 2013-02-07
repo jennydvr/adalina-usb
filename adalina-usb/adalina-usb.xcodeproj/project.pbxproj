@@ -37,8 +37,6 @@
 		2E56BB8B16C41602007FB505 /* training.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = training.h; sourceTree = "<group>"; };
 		2E61F13616C2E1A600E80CC4 /* brain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brain.cpp; sourceTree = "<group>"; };
 		2E61F13716C2E1A600E80CC4 /* brain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brain.h; sourceTree = "<group>"; };
-		2E61F13A16C33A1000E80CC4 /* inputAnd */ = {isa = PBXFileReference; lastKnownFileType = text; name = inputAnd; path = "../../../../../Library/Developer/Xcode/DerivedData/adalina-usb-fdrbwhkosssqxmakioivmpqrmfep/Build/Products/Debug/inputAnd"; sourceTree = "<group>"; };
-		2E61F13B16C33C1200E80CC4 /* bupa.data */ = {isa = PBXFileReference; lastKnownFileType = text; name = bupa.data; path = "../../../../../Library/Developer/Xcode/DerivedData/adalina-usb-fdrbwhkosssqxmakioivmpqrmfep/Build/Products/Debug/bupa.data"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +73,6 @@
 				2E56BB8716C410F8007FB505 /* adaline.h */,
 				2E61F13616C2E1A600E80CC4 /* brain.cpp */,
 				2E61F13716C2E1A600E80CC4 /* brain.h */,
-				2E61F13B16C33C1200E80CC4 /* bupa.data */,
-				2E61F13A16C33A1000E80CC4 /* inputAnd */,
 				0071C05816C1899100DA8AC9 /* main.cpp */,
 				0071C06116C19B8300DA8AC9 /* neuron.cpp */,
 				0071C06216C19B8300DA8AC9 /* neuron.h */,
