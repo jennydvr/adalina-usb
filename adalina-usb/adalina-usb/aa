@@ -1,0 +1,20 @@
+
+float calculateMean(int numCase) {
+    float sum = 0;
+    for (int i = 0; i != testCases.size(); ++i)
+        sum += testCases[i][numCase];
+    
+    return sum / testCases.size();
+}
+
+void calculateSD(int numCase) {
+    float mean = calculateMean(numCase);
+    float sum = 0;
+    
+    for (int i = 0; i != testCases.size(); ++i) {
+        float aux = testCases[i][numCase] - mean;
+        sum += aux * aux;
+    }
+    
+    return sqrt(sum / testCases.size());
+}
