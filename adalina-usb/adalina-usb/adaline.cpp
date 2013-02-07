@@ -12,8 +12,8 @@ void BatchAdaline::update(vector<float> input, float output, float real) {
     for (int i = 0; i != weights.size(); ++i) {
         int aux = 0;
         
-        for (int j = 0; j != testCases.size(); ++j)
-            aux += (testResults[j] - calculateOutput(testCases[j])) * testCases[j][i];
+        for (int j = 0; j != Brain::Instance()->getTestCases().size(); ++j)
+            aux += (Brain::Instance()->getTestResult()[j] - calculateOutput(Brain::Instance()->getTestCases()[j])) * Brain::Instance()->getTestCases()[j][i];
         
         weights[i] += trainingRate * aux / 2;
     }

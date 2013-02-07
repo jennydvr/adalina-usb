@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "neuron.h"
-
+#include "brain.h"
 class BatchAdaline : public Neuron {
     
 protected:
