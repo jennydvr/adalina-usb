@@ -17,9 +17,22 @@ Brain * Brain::Instance()
 	}
 	return instance;
 }
+void Brain::initNeuron(Type_Neuron type)
+{
+    switch (type) {
+        case BATCH_ADALINE:
+            neurons = new BatchAdaline();
+            break;
+        case INCREMENTAL_ADALINE:
+            neurons = new IncrementalAdaline();
+            break;
+        default:
+            neurons = new Neuron();
+            break;
+    }
+}
 
-
-void Brain::Train(int numNeurons,const char * casesFile ,float minError, int maxIter)
+void Brain::Train(int numNeurons,const char * casesFile ,float minError, int maxIter, Type_Neuron type)
 {
     //Set values for training
     isTraining = true;
@@ -27,7 +40,8 @@ void Brain::Train(int numNeurons,const char * casesFile ,float minError, int max
     
     readInputs(casesFile);
     
-    neurons=std::vector <Neuron>(numNeurons);
+
+    initNeuron(type);
     
     int it = 0;
     float error = std::numeric_limits<float>::max();
@@ -37,10 +51,10 @@ void Brain::Train(int numNeurons,const char * casesFile ,float minError, int max
         // Analisis del caso
         int numCase = it % testCases.size();
         
-        neurons[0].analize(testCases[numCase], testResults[numCase]);
+        neurons->analize(testCases[numCase], testResults[numCase]);
         
         cout << "    " << it++ << " : ";
-        printf("%1.2f\n", (error = neurons[0].calculateError()));
+        printf("%1.2f\n", (error = neurons->calculateError()));
     }
     
     cout << "\nResults:\n";

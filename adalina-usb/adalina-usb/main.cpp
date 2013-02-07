@@ -16,7 +16,7 @@ int main(int argc, const char * argv[])
     cout << "Hello!\nTraining for: ";
     cout << "AND\n";
     
-    Brain::Instance()->Train(1, "inputAnd", 0.1, 1000);
+    Brain::Instance()->Train(1, "inputAnd", 0.1, 1000,NEURON);
     // Creacion de inputs - version chimba
     /*
     for (int i = 0; i != 4; ++i) {

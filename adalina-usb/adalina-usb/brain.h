@@ -11,13 +11,14 @@
 
 #include <iostream>
 #include <fstream>
-#include "neuron.h"
+#include "adaline.h"
 class Neuron;
 
+enum Type_Neuron { NEURON, BATCH_ADALINE , INCREMENTAL_ADALINE};
 class Brain{
     
 protected:
-    std::vector <Neuron> neurons;
+    Neuron * neurons;
     static Brain * instance;
     
     //------- Training ------//
@@ -38,6 +39,7 @@ protected:
      */
     std::vector<std::string> split(std::string work,char delim, int rep);
     
+    void initNeuron(Type_Neuron type);
 public:
 
     static Brain * Instance();
@@ -46,7 +48,7 @@ public:
      Train the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator.
      */
-    void Train(int numNeurons, const char * casesFile ,float minError, int maxIter);
+    void Train(int numNeurons, const char * casesFile ,float minError, int maxIter,Type_Neuron type);
     
     /*
      Get the number of input for TestCases.
