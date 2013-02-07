@@ -13,13 +13,13 @@
 #include <vector>
 #include <numeric>
 #include <limits>
-//#include "globals.h"
-#include "brain.h"
+
+#include "Training.h"
 
 using namespace std;
-
 class Neuron {
-    
+
+
 protected:
     
     // Vector de pesos

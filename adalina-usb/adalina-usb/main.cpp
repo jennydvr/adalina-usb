@@ -13,10 +13,18 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    cout << "Hello!\nTraining for: ";
-    cout << "AND\n";
-    
-    Brain::Instance()->Train(1, "inputAnd", 0.1, 1000,NEURON);
+    int type =  atoi(argv[5]);
+    Type_Neuron tipe = NEURON;
+    switch (type) {
+        case 1:
+            tipe = BATCH_ADALINE;
+            break;
+        case 2:
+            tipe = INCREMENTAL_ADALINE;
+        default:
+            break;
+    }
+    Brain::Instance()->Train(atoi(argv[1]), argv[2], (float)atof(argv[3]), atoi(argv[4]),tipe);
     // Creacion de inputs - version chimba
     /*
     for (int i = 0; i != 4; ++i) {
