@@ -22,6 +22,8 @@ class Neuron {
 
 protected:
     
+    int min;
+    int max;
     // Vector de pesos
     vector<float> weights;
     
@@ -40,11 +42,31 @@ public:
     Neuron();
     Neuron(float trainingRate);
     
+    float getTrainingRating()
+    {
+        return trainingRate;
+    }
+    
+    void setTrainingRate(float newTR)
+    {
+        trainingRate = newTR;
+    }
+    
+    void setMin(int min)
+    {
+        this->min = min;
+    }
+    void setMax(int max)
+    {
+        this->max = max;
+    }
+    
+    
     // Analiza un input, y compara el output con el valor real (en caso de entrenamiento)
     float analize(vector<float> input, float real = numeric_limits<float>::max());
     
     // Calcula el error cuadratico medio
-    float calculateError();
+    float calculateError(std::vector < std::vector <float> > cases, std::vector <float> result);
     
 };
 

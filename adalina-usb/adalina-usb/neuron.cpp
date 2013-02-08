@@ -7,11 +7,12 @@
 //
 
 #include "neuron.h"
-
+#include <math.h>
 Neuron::Neuron() {
     // Inicializa el vector de pesos
     weights = vector<float>(numVariables , 0.05f);
-    
+    min = 0;
+    max = 1;
     // Inicializa la tasa de aprendizaje
     trainingRate = 0.1f;
 }
@@ -26,7 +27,7 @@ Neuron::Neuron(float trainingRate) {
 
 float Neuron::calculateOutput(vector<float> input) {
     // Output : if  Sumatoria(w[i] * x[i]) > 0  then  1  else  -1
-    return inner_product(input.begin(), input.end(), weights.begin(), 0) > 0 ? 1 : -1;
+    return inner_product(input.begin(), input.end(), weights.begin(), 0) > 0 ? min : max;
 }
 
 void Neuron::update(vector<float> input, float output, float real) {
@@ -45,14 +46,16 @@ float Neuron::analize(vector<float> input, float real) {
     return output;
 }
 
-float Neuron::calculateError() {
-    // Error : Sumatoria((t[i] - o[i]) * (t[i] - o[i])) / 2
+float Neuron::calculateError(std::vector < std::vector <float> > cases, std::vector <float> result) {
+    // Error Cuadratico Medio : Sumatoria((t[i] - o[i]) * (t[i] - o[i])) / n
     float error = 0;
-    int numCases =(int) testCases.size();
-    for (int i = 0; i !=numCases ; ++i) {
-        float aux = testResults[i] - calculateOutput(testCases[i]);
+    
+    int numCases = (int) cases.size();
+    
+    for (int i = 0; i != numCases ; ++i) {
+        float aux = result[i] - calculateOutput(cases[i]);
         error += aux * aux;
     }
     
-    return error / numCases;
+    return (error / (float) numCases);
 }

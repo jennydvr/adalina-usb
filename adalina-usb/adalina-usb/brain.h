@@ -21,12 +21,15 @@ class Brain{
 protected:
     Neuron * neurons;
     static Brain * instance;
-    
+    int minimo;
+    int maximo;
+    //This value not be here
+    std::stringstream ss;
 
     /*
         Read casesFile and get the testCases and testResults
      */
-    void readInputs(const char * casesFile);
+    void readInputs(const char * casesFile, int percent);
     /*
         Split a string by delim, and return a vector of string.
      ARREGLAR REDACCION
@@ -43,15 +46,25 @@ protected:
     void closeFile(FILE * archivo);
     
     void writeFile( FILE * archivo,int iter, float error);
+    
+    /*
+     Remove the 100 - percent of data
+     */
+    void takeData(int percent);
+    
 public:
 
     static Brain * Instance();
     
     /*
-     Train the brain and her neurons, by number of neurons, parser casesFile, minimun error and
-     maximun of iterator.
+     FirstTrain the brain and her neurons, by number of neurons, parser casesFile, minimun error and
+     maximun of iterator. Percent take only a part of input data.
      */
-    void Train(int numNeurons, const char * casesFile , float trainingRate,float minError, int maxIter,Type_Neuron type);
+    void FirstTrain( const char * casesFile, int percent, float _trainingRate,float _minError,Type_Neuron type, int maxIter,float (*uTR)(float,int));
+    
+    void TestData(const char * casesFile);
+    
+
 
 };
 #endif /* defined(__adalina_usb__brain__) */

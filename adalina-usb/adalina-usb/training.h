@@ -19,4 +19,7 @@ extern std::vector < std::vector <float> > testCases;
 extern std::vector <float> testResults;
 //------
 
+extern std::vector < std::vector <float> > controlCases;
+extern std::vector <float> controlResults;
+
 #endif /* defined(__adalina_usb__training__) */

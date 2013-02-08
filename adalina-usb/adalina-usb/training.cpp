@@ -12,3 +12,5 @@ float minError = std::numeric_limits<float>::min();
 bool isTraining = false;
 std::vector < std::vector <float> > testCases;
 std::vector <float> testResults;
+std::vector < std::vector <float> > controlCases;
+std::vector <float> controlResults;

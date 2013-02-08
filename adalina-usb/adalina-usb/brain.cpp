@@ -30,30 +30,51 @@ void Brain::initNeuron(Type_Neuron type, float _trainingRate)
             neurons = new Neuron(_trainingRate);
             break;
     }
+    
+    neurons->setMax(maximo);
+    neurons->setMin(minimo);
 }
 
-void Brain::Train(int numNeurons,const char * casesFile , float _trainingRate ,float _minError, int maxIter, Type_Neuron type)
+void Brain::FirstTrain(const char * casesFile,int percent,float _trainingRate,float _minError,Type_Neuron type,int maxIter, float (*uTR)(float,int)  )
 {
-    //Set values for training
+
     isTraining = true;
-    minError = _minError;
-    
-    cout << "Reading file: " << casesFile << endl;
-    
-    readInputs(casesFile);
-    
-    cout << "Done! Analizing..." << endl;
-    
-    initNeuron(type, _trainingRate);
     
     int it = 0;
     float error = std::numeric_limits<float>::max();
     
-
-    std::stringstream ss;
-    ss << casesFile<<"_"<<_trainingRate << ".csv";
-
+    readInputs(casesFile, percent);
+    
+    initNeuron(type, _trainingRate);
+    
+    /*Configure outputFile*/
+    int typeNeuron;
+    switch (type) {
+        case BATCH_ADALINE:
+            typeNeuron = 1;
+            break;
+        case INCREMENTAL_ADALINE:
+            typeNeuron = 2;
+            break;
+        case NEURON:
+            typeNeuron = 0;
+            break;
+    }
+    
+    if (uTR)
+    {
+        ss << casesFile<<"_"<<typeNeuron <<"_Decay_TR_" <<neurons->getTrainingRating()<<"_perCases_"<<percent << ".csv";
+    }
+    else
+    {
+        ss << casesFile<< "_"<< typeNeuron<<"_TR_"<<neurons->getTrainingRating()<<"_perCases_"<<percent << ".csv";
+ 
+    }
     FILE * archivo = initFile((ss.str()).c_str());
+    fprintf(archivo, "TrainingData;\n");
+    //------
+    
+    
     while (error > minError & it < maxIter * testCases.size())
     {
         // Analisis del caso
@@ -61,20 +82,43 @@ void Brain::Train(int numNeurons,const char * casesFile , float _trainingRate ,f
         
         neurons->analize(testCases[numCase], testResults[numCase]);
         
-        writeFile(archivo,it++,(error = neurons->calculateError()));
-
+        writeFile(archivo,it++,(error = neurons->calculateError(testCases,testResults)));
+        if (uTR)
+        {
+            std::cout << "Iteracion: "<<it<<" TrainingRAte : "<< uTR(_trainingRate,it) << std::endl;
+             neurons->setTrainingRate(uTR(_trainingRate,it));
+        }
+       
     }
     closeFile(archivo);
-    cout << "\nResults:\n";
-    printf("    Number of iterations: %d\n", it);
-    printf("    Iterations per case: %1.2f\n", ((float)it / testCases.size()));
-    printf("    Final error: %1.2f\n", error);
+    
+    isTraining = false;
+}
+
+void Brain::TestData(const char * casesFile)
+{
+    
+    if (casesFile) {
+        
+    }
+    if ((int)controlCases.size() < 1 || (int) controlResults.size() < 1) {
+        std::cout << "No cases for test" << std::endl;
+        exit(1);
+    }
+    
+    ss<< "_PRUEBA.csv";
+      FILE * archivo = initFile((ss.str()).c_str());
+      fprintf(archivo, "TestData;\n");
+    
+    writeFile(archivo,0, neurons->calculateError(controlCases,controlResults));
+
+    closeFile(archivo);
 }
 
 FILE * Brain::initFile(const char * name)
 {
     FILE *archivo;
-    archivo=fopen(name, "w");
+    archivo=fopen(name, "w+");
     
     return archivo;
 }
@@ -96,13 +140,39 @@ void Brain::writeFile( FILE * archivo,int iter, float error)
     fprintf(archivo, "%s",(ss1.str()).c_str());
 }
 
-void Brain::readInputs(const char * casesFile)
+void Brain::takeData(int percent)
+{
+    if (percent > 100)
+    {
+        percent = 100;
+    } else if (percent < 0)
+    {
+        percent = 0;
+    }
+    int awayData = ((100 - percent) * (int)testCases.size() ) / 100;
+    for (int i = 0; i < awayData; i++)
+    {
+        controlResults.push_back(testResults.back());
+        testResults.pop_back();
+        controlCases.push_back(testCases.back());
+        testCases.pop_back();
+    }
+    if ((int)testCases.size() < 1)
+    {
+        std::cout << "Error with input file and percent of the data" << std::endl;
+        exit(1);
+    }
+}
+
+void Brain::readInputs(const char * casesFile,int percent)
 {
     numVariables = -1;
     std::string line;
     std::vector<std::string> strs;
 
     ifstream myfile(casesFile);
+    minimo = numeric_limits<int>::max();
+     maximo = numeric_limits<int>::min();
     if (myfile.is_open())
     {
         while (true)
@@ -122,8 +192,20 @@ void Brain::readInputs(const char * casesFile)
             testCases.push_back(firstValues);
             testResults.push_back((float)atof(strs[strs.size()-1].c_str()));
             
+            if (minimo > testResults.back()) {
+                minimo = testResults.back();
+            }
+            if(maximo < testResults.back())
+            {
+                maximo = testResults.back();
+                
+            }
         }
         myfile.close();
+        
+        takeData(percent);
+        
+        
         if (numVariables == -1)
         {
             numVariables = (int) testCases[0].size();
