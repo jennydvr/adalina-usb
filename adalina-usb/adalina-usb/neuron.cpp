@@ -27,7 +27,7 @@ Neuron::Neuron(float trainingRate) {
 
 float Neuron::calculateOutput(vector<float> input) {
     // Output : if  Sumatoria(w[i] * x[i]) > 0  then  1  else  -1
-    return inner_product(input.begin(), input.end(), weights.begin(), 0) > 0 ? min : max;
+    return inner_product(input.begin(), input.end(), weights.begin(), 0) > 0 ? max : min;
 }
 
 void Neuron::update(vector<float> input, float output, float real) {
