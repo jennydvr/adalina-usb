@@ -15,54 +15,99 @@
 #include "adaline.h"
 #include "Training.h"
 
+
+#include "layer.h"
 enum Type_Neuron { NEURON, BATCH_ADALINE , INCREMENTAL_ADALINE};
 class Brain{
     
 protected:
+     /*Cambios proyecto 2*/
+    
+    //Tasa  de aprendizaje
+    float _trainingRate;
+    
+    //Valor del momentum, 0.0 si no se aplica.
+    float _momentunRate;
+    
+    std::vector <Layer> _layers;
+    
+    /*
+     * Asigna los pesos iniciales a las capas que no sean la inicial.
+     */
+    void assignInitialWeights();
+    
+
+    
+    float activationFunction(float sum);
+    
+    /*
+     * Actualiza los valores de output de cada neurona
+     */
+    void updateFeedForward(std::vector<float> expectedResult );
+    
+    void updateDeltas(std::vector<float> expectedResult );
+    
+    void applyMomentum();
+    
+    void updateWeight();
+    
+
+    //--------
+    
+     static Brain * instance;
+    
+   /*
     Neuron * neurons;
-    static Brain * instance;
+    
     int minimo;
     int maximo;
     //This value not be here
     std::stringstream ss;
-
+    */
     /*
         Read casesFile and get the testCases and testResults
      */
-    void readInputs(const char * casesFile, int percent);
+    //void readInputs(const char * casesFile, int percent);
     /*
         Split a string by delim, and return a vector of string.
      ARREGLAR REDACCION
      */
-    std::vector<std::string> split(std::string work,char delim, int rep);
+   // std::vector<std::string> split(std::string work,char delim, int rep);
     
     /*
-     Inicialize one nueron by the Type_Neuron
+     Inicialize one neuron by the Type_Neuron
      */
-    void initNeuron(Type_Neuron type, float _trainingRate);
+ //   void initNeuron(Type_Neuron type, float _trainingRate);
   
-    FILE * initFile(const char * name);
+   // FILE * initFile(const char * name);
     
-    void closeFile(FILE * archivo);
+    //void closeFile(FILE * archivo);
     
-    void writeFile( FILE * archivo,int iter, float error);
+   // void writeFile( FILE * archivo,int iter, float error);
     
     /*
      Remove the 100 - percent of data
      */
-    void takeData(int percent);
+    //void takeData(int percent);
     
 public:
 
     static Brain * Instance();
     
     /*
+     * Calcula el error cuadratico medio de la red neuroal, usando los result como el valor esperado.
+     */
+    float calculateMSError(std::vector<float> expectedResult);
+    
+    void BackPropagation();
+    
+    /*
      FirstTrain the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator. Percent take only a part of input data.
      */
-    void FirstTrain( const char * casesFile, int percent, float _trainingRate,float _minError,Type_Neuron type, int maxIter,float (*uTR)(float,int));
+    //void FirstTrain( const char * casesFile, int percent, float _trainingRate,float _minError,Type_Neuron type, int maxIter,float (*uTR)(float,int));
     
-    void TestData(const char * casesFile);
+    //void TestData(const char * casesFile);
     
 
 

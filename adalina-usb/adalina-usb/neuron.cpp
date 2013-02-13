@@ -9,14 +9,36 @@
 #include "neuron.h"
 #include <math.h>
 Neuron::Neuron() {
+    
+    /*
     // Inicializa el vector de pesos
     weights = vector<float>(numVariables , 0.05f);
     min = 0;
     max = 1;
     // Inicializa la tasa de aprendizaje
-    trainingRate = 0.1f;
+    trainingRate = 0.1f;*/
+}
+void Neuron::setDelta(float value)
+{
+    _deltaError = _output * ( 1 - _output ) * ( value );
 }
 
+float Neuron::getOutput()
+{
+    return _output;
+}
+
+//Obtiene la sumatoria de los pesos multiplicado por el delta error
+float Neuron::getSumDeltaWeight()
+{
+    float sum=0.0;
+    for(int k=0;k < (int)_weights.size();k++){
+        sum+= _deltaError * _weights[k];
+    }
+    
+    return sum;
+}
+/*
 Neuron::Neuron(float trainingRate) {
     // Inicializa el vector de pesos
     weights = vector<float>(numVariables , 0.05f);
@@ -59,3 +81,4 @@ float Neuron::calculateError(std::vector < std::vector <float> > cases, std::vec
     
     return (error / (float) numCases);
 }
+*/

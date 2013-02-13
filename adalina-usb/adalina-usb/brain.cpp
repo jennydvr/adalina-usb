@@ -17,6 +17,9 @@ Brain * Brain::Instance()
 	}
 	return instance;
 }
+
+
+/*
 void Brain::initNeuron(Type_Neuron type, float _trainingRate)
 {
     switch (type) {
@@ -47,7 +50,7 @@ void Brain::FirstTrain(const char * casesFile,int percent,float _trainingRate,fl
     
     initNeuron(type, _trainingRate);
     
-    /*Configure outputFile*/
+
     int typeNeuron;
     switch (type) {
         case BATCH_ADALINE:
@@ -130,7 +133,7 @@ void Brain::closeFile(FILE * archivo)
 
 void Brain::writeFile( FILE * archivo,int iter, float error)
 {
-    /*El manejador de archivo*/
+
    
     std::stringstream ss1;
     ss1.imbue(std::locale(ss1.getloc(), new DecimalSeparator<char>(',')));
@@ -239,4 +242,4 @@ std::vector<std::string> Brain::split(std::string work,char delim, int rep)
     if (!buf.empty())
         output.push_back(buf);
     return output;
-}
+}*/
