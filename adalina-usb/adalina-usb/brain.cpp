@@ -8,6 +8,7 @@
 
 #include "brain.h"
 #include "DecimalSeparator.h"
+#include <math.h>
 Brain * Brain::instance = 0;
 Brain * Brain::Instance()
 {
@@ -18,7 +19,74 @@ Brain * Brain::Instance()
 	return instance;
 }
 
+void Brain::Initiliaze( int numL, std::vector<int> sizeXL ,std::vector<int> sizeWN, float TR, float MR )
+{
+    _trainingRate = TR;
+    _momentunRate = MR;
+    
+    if (numL != sizeXL.size() || numL != sizeWN.size()) {
+        perror("Dont match size of the layer with the input weigth and number of neurons.");
+        exit(1);
+    }
+    _layers.push_back(Layer(INPUT_LAYER, sizeWN[0], sizeXL[0]));
 
+    for (int i = 1; i < numL-1; i++) {
+        _layers.push_back(Layer(HIDDEN_LAYER, sizeWN[i], sizeXL[i]));
+    }
+    _layers.push_back(Layer(OUTPUT_LAYER,sizeWN[numL-1], sizeXL[numL-1]));
+}
+
+float activationFunction(float sum)
+{
+    return (1/(1+exp(-sum)));
+}
+
+void Brain::updateFeedForward(std::vector<float> input)
+{
+    _layers[0].updateOutput(input,NULL);
+    
+    for (int i = 1; i < (int)_layers.size(); i++) {
+        
+        _layers[i].updateOutput(_layers[i-1].getOutputs(),activationFunction);
+    }
+}
+
+void Brain::updateDeltas(std::vector<float> expectedResult )
+{
+     _layers[_layers.size()-1].setDeltas(expectedResult);
+   
+    for (int i  = (int) _layers.size() - 2; i > 0 ; i--) {
+        _layers[i].setDeltas( _layers[i+1]);
+    }    
+}
+
+void Brain::updateWeight()
+{
+    for (int i  = 1; i < (int) _layers.size(); i++) {
+        _layers[i].updateWeight(_trainingRate,_layers[i-1].getOutputs());
+    }
+}
+
+
+void Brain::BackPropagation(std::vector<float> input, std::vector<float>expectedResult)
+{
+    
+    updateFeedForward(input);
+    
+    updateDeltas(expectedResult );
+    
+    //aplicar momentums
+    
+    updateWeight();
+}
+
+
+float Brain::calculateMSError(std::vector<float> expectedResult)
+{
+    float mse =  _layers[(int)_layers.size()].getSquareError(expectedResult) ;
+
+    return mse/2;
+}
 /*
 void Brain::initNeuron(Type_Neuron type, float _trainingRate)
 {

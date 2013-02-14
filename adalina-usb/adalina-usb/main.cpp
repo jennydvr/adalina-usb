@@ -40,7 +40,7 @@ int main(int argc, const char * argv[])
     if (atoi(argv[6])==1) {
         clock_t t_ini, t_fin;
         t_ini = clock();
-        Brain::Instance()->FirstTrain(argv[1], percent,(float)atof(argv[2]),(float)atof(argv[3]),tipe,atoi(argv[5]),updateTrainingRate);
+      //  Brain::Instance()->FirstTrain(argv[1], percent,(float)atof(argv[2]),(float)atof(argv[3]),tipe,atoi(argv[5]),updateTrainingRate);
         t_fin = clock();
         float TiempoTotal = (float)(t_fin - t_ini) / CLOCKS_PER_SEC;
         std::cout << "Time " << tipe << " TR= "<< (float)atof(argv[2])<<" Decay : " << TiempoTotal<<std::endl;
@@ -48,14 +48,14 @@ int main(int argc, const char * argv[])
     else{
         clock_t t_ini, t_fin;
         t_ini = clock();
-        Brain::Instance()->FirstTrain(argv[1], percent,(float)atof(argv[2]),(float)atof(argv[3]),tipe,atoi(argv[5]),NULL);
+       // Brain::Instance()->FirstTrain(argv[1], percent,(float)atof(argv[2]),(float)atof(argv[3]),tipe,atoi(argv[5]),NULL);
         t_fin = clock();
         float TiempoTotal = (float)(t_fin - t_ini) / CLOCKS_PER_SEC;
         std::cout << "Time " << tipe << " TR= "<< (float)atof(argv[2])<<" : " << TiempoTotal<<std::endl;
     }
 
     if (percent < 100 && percent > 0) {
-        Brain::Instance()->TestData(NULL);
+       // Brain::Instance()->TestData(NULL);
     }
     
     return 0;

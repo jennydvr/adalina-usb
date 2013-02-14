@@ -7,7 +7,7 @@
 //
 
 #include "adaline.h"
-
+/*
 void BatchAdaline::update(std::vector < float > input, float output, float real) {
     for (int i = 0; i != weights.size(); ++i) {
         int aux = 0;
@@ -22,4 +22,4 @@ void BatchAdaline::update(std::vector < float > input, float output, float real)
 void IncrementalAdaline::update(std::vector < float > input, float output, float real) {
     for (int i = 0; i != weights.size(); ++i)
         weights[i] += trainingRate * (real - output) * input[i] / 2;
-}
+}*/

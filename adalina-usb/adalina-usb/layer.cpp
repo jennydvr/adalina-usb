@@ -13,23 +13,101 @@ Layer::Layer()
     
 }
 
+Layer::Layer( Type_Layer type,  int numW, int numN)
+{
+    _type = type;
+    
+    if (type == INPUT_LAYER) {
+        for (int i = 0; i <  numN; i++) {
+            _neurons.push_back(Neuron(numW,false));
+            _outp.push_back(0);
+        }
+    }
+    else{
+        for (int i = 0; i <  numN; i++) {
+            _neurons.push_back(Neuron(numW,true));
+            _outp.push_back(0);
+        }
+    }
+   
+}
+
+float Layer::getSumWeightNeurons(int pos)
+{
+    float sum = 0;
+    
+    for (int k = 0; k < (int)_neurons.size(); k++) {
+        sum += _neurons[k].getDelta() * _neurons[k].getWeight(pos) ;
+    }
+    
+    return sum;
+}
 void Layer::setDeltas(std::vector<float> expectedResult)
 {
-    switch (_type) {
-        case HIDDEN_LAYER:
-            for (int i =0; i<(int)_neurons.size(); i++) {
-                _neurons[i].setDelta(_neurons[i].getSumDeltaWeight());
-            }
-            break;
-            
-        case OUTPUT_LAYER:
-            for (int i =0; i<(int)_neurons.size(); i++) {
-                _neurons[i].setDelta(expectedResult[i] - _neurons[i].getOutput());
-            }
-            break;
-            
-        case INPUT_LAYER:
-            
-            break;
+    for (int i =0; i<(int)_neurons.size(); i++) {
+        _neurons[i].setDelta(expectedResult[i] - _neurons[i].getOutput());
     }
+
 }
+
+void Layer::setDeltas( Layer capaSig)
+{
+    
+    for (int j =0; j<(int)_neurons.size(); j++) {
+                
+        _neurons[j].setDelta(capaSig.getSumWeightNeurons(j));
+    }
+
+}
+
+void Layer::updateOutput(std::vector<float> outputs,float (* activationF)(float))
+{
+    if (activationF != NULL) {
+        for (int i = 0; i < (int)_neurons.size(); i++) {
+           _neurons[i].setOutput(activationF( _neurons[i].getSumWeightWithVector(outputs)) );
+            
+            _outp[i] = (_neurons[i].getOutput());
+        }
+    }
+    else
+    {
+        for (int i = 0; i < (int)_neurons.size(); i++) {
+            _neurons[i].setOutput(outputs[i]);
+           
+            _outp[i]= (_neurons[i].getOutput());
+        }
+    }
+    
+
+    
+}
+void Layer::updateWeight(float tr, std::vector<float> outputs)
+{
+    for (int j = 0; j < (int)_neurons.size(); j++) {
+        _neurons[j].setWeight(tr, outputs);
+    }
+    
+}
+
+
+std::vector<float> Layer::getOutputs()
+{
+return _outp;
+}
+
+float Layer::getSquareError(std::vector<float> expectedOut)
+{
+    float sum = 0;
+    float aux ;
+    for (int i = 0; i < (int) _outp.size(); i++) {
+        aux = expectedOut[i] * _outp[i] ;
+        sum += aux * aux;
+    }
+    
+    return sum;
+}
+
+
+
+
+

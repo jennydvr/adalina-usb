@@ -60,15 +60,30 @@ public:
     //Actualiza el delta de la neurona, el value depende de cada tipo de capa
     void setDelta(float value);
     
+    void setWeight(float tr, std::vector<float> output);
+    
+    float getDelta();
+    
     float getOutput();
     
-    //Obtiene la sumatoria de los pesos multiplicado por el delta error
+    void setOutput(float output);
+
     float getSumDeltaWeight();
+    
+        //Obtiene la sumatoria de los pesos multiplicado por el delta error
+    float getSumWeightWithVector(std::vector<float> output);
+    
+    float getWeight(int pos);
     //--------
     
     
     // Inicializa una neurona
     Neuron();
+    
+    /*
+     * numW - numero de pesos
+     */
+    Neuron(int numW, bool randomizeW);
     /*
     Neuron(float trainingRate);
     

@@ -15,7 +15,7 @@
 
 
 
-
+/*
 class BatchAdaline : public Neuron {
     
 protected:
@@ -41,6 +41,6 @@ public:
     {
         
     }
-};
+};*/
 
 #endif /* defined(__adalina_usb__adaline__) */

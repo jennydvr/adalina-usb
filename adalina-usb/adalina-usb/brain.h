@@ -18,6 +18,10 @@
 
 #include "layer.h"
 enum Type_Neuron { NEURON, BATCH_ADALINE , INCREMENTAL_ADALINE};
+
+extern float activationFunction(float sum);
+
+
 class Brain{
     
 protected:
@@ -32,18 +36,9 @@ protected:
     std::vector <Layer> _layers;
     
     /*
-     * Asigna los pesos iniciales a las capas que no sean la inicial.
-     */
-    void assignInitialWeights();
-    
-
-    
-    float activationFunction(float sum);
-    
-    /*
      * Actualiza los valores de output de cada neurona
      */
-    void updateFeedForward(std::vector<float> expectedResult );
+    void updateFeedForward(std::vector<float> input);
     
     void updateDeltas(std::vector<float> expectedResult );
     
@@ -99,8 +94,16 @@ public:
      */
     float calculateMSError(std::vector<float> expectedResult);
     
-    void BackPropagation();
+    void BackPropagation(std::vector<float> input, std::vector<float>expectedResult);
     
+    /*
+     * numL - numero de Layer
+     * sizeXL[i] - numero de Neuronas por cada layer
+     * sizeWN[i] - numero de pesos de las neuronas de cada Layer
+     * TR - training rate
+     * MR - momentun rate
+     */
+    void Initiliaze( int numL, std::vector<int> sizeXL ,std::vector<int> sizeWN, float TR, float MR );
     /*
      FirstTrain the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator. Percent take only a part of input data.

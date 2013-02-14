@@ -21,13 +21,34 @@ protected:
     
     std::vector <Neuron> _neurons;
     Type_Layer _type;
-    
+    std::vector<float> _outp;
     
 public:
     
+    void setDeltas(Layer capaSig);
+    
     void setDeltas(std::vector<float> expectedResult);
+
     
     Layer();
     
+    /*
+     * numW - numero de pesos por neurona
+     * numN - numero de Neuronas
+     */
+    Layer( Type_Layer type, int numW, int numN);
+    
+    /*
+     * outputs - valores asignados a cada neurona correspondiente
+     */
+    void updateOutput(std::vector<float> outputs, float (* activationF)(float));
+    
+    void updateWeight(float tr, std::vector<float> outputs);
+
+    float getSumWeightNeurons(int pos);
+    
+    std::vector<float> getOutputs();
+    
+    float getSquareError(std::vector<float> expectedOut);
 };
 #endif /* defined(__adalina_usb__layer__) */
