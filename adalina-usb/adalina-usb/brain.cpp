@@ -78,6 +78,11 @@ void Brain::BackPropagation(std::vector<float> input, std::vector<float>expected
     //aplicar momentums
     
     updateWeight();
+    
+    vector<float> outp = _layers[_layers.size() - 1].getOutputs();
+    for (int i = 0; i != outp.size(); ++i)
+        cout << outp[i] << " ";
+    cout << endl;
 }
 
 

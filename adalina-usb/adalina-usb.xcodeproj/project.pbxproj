@@ -11,8 +11,6 @@
 		0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06116C19B8300DA8AC9 /* neuron.cpp */; };
 		2E044AF016CAE519005E6130 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E044AEE16CAE519005E6130 /* layer.cpp */; };
 		2E388D6316C43ABF00DA79FD /* DecimalSeparator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E388D6116C43ABF00DA79FD /* DecimalSeparator.cpp */; };
-		2E56BB8816C410F8007FB505 /* adaline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E56BB8616C410F8007FB505 /* adaline.cpp */; };
-		2E56BB8C16C41602007FB505 /* training.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E56BB8A16C41602007FB505 /* training.cpp */; };
 		2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E61F13616C2E1A600E80CC4 /* brain.cpp */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +35,6 @@
 		2E044AEF16CAE519005E6130 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
 		2E388D6116C43ABF00DA79FD /* DecimalSeparator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DecimalSeparator.cpp; sourceTree = "<group>"; };
 		2E388D6216C43ABF00DA79FD /* DecimalSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalSeparator.h; sourceTree = "<group>"; };
-		2E56BB8616C410F8007FB505 /* adaline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = adaline.cpp; sourceTree = "<group>"; };
-		2E56BB8716C410F8007FB505 /* adaline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adaline.h; sourceTree = "<group>"; };
-		2E56BB8A16C41602007FB505 /* training.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = training.cpp; sourceTree = "<group>"; };
-		2E56BB8B16C41602007FB505 /* training.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = training.h; sourceTree = "<group>"; };
 		2E61F13616C2E1A600E80CC4 /* brain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brain.cpp; sourceTree = "<group>"; };
 		2E61F13716C2E1A600E80CC4 /* brain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,15 +69,11 @@
 		0071C05716C1899100DA8AC9 /* adalina-usb */ = {
 			isa = PBXGroup;
 			children = (
-				2E56BB8616C410F8007FB505 /* adaline.cpp */,
-				2E56BB8716C410F8007FB505 /* adaline.h */,
 				2E61F13616C2E1A600E80CC4 /* brain.cpp */,
 				2E61F13716C2E1A600E80CC4 /* brain.h */,
 				0071C05816C1899100DA8AC9 /* main.cpp */,
 				0071C06116C19B8300DA8AC9 /* neuron.cpp */,
 				0071C06216C19B8300DA8AC9 /* neuron.h */,
-				2E56BB8A16C41602007FB505 /* training.cpp */,
-				2E56BB8B16C41602007FB505 /* training.h */,
 				2E388D6116C43ABF00DA79FD /* DecimalSeparator.cpp */,
 				2E388D6216C43ABF00DA79FD /* DecimalSeparator.h */,
 				2E044AEE16CAE519005E6130 /* layer.cpp */,
@@ -146,8 +136,6 @@
 				0071C05916C1899100DA8AC9 /* main.cpp in Sources */,
 				0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */,
 				2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */,
-				2E56BB8816C410F8007FB505 /* adaline.cpp in Sources */,
-				2E56BB8C16C41602007FB505 /* training.cpp in Sources */,
 				2E388D6316C43ABF00DA79FD /* DecimalSeparator.cpp in Sources */,
 				2E044AF016CAE519005E6130 /* layer.cpp in Sources */,
 			);

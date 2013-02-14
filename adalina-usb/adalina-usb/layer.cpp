@@ -23,13 +23,13 @@ Layer::Layer( Type_Layer type,  int numW, int numN)
             _outp.push_back(0);
         }
     }
-    else{
+    else
+    {
         for (int i = 0; i <  numN; i++) {
             _neurons.push_back(Neuron(numW,true));
             _outp.push_back(0);
         }
     }
-   
 }
 
 float Layer::getSumWeightNeurons(int pos)
@@ -92,7 +92,7 @@ void Layer::updateWeight(float tr, std::vector<float> outputs)
 
 std::vector<float> Layer::getOutputs()
 {
-return _outp;
+    return _outp;
 }
 
 float Layer::getSquareError(std::vector<float> expectedOut)
@@ -106,8 +106,3 @@ float Layer::getSquareError(std::vector<float> expectedOut)
     
     return sum;
 }
-
-
-
-
-

@@ -12,8 +12,6 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include "adaline.h"
-#include "Training.h"
 
 
 #include "layer.h"
