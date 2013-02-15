@@ -6,12 +6,6 @@
 //  Copyright (c) 2013 Jenny Valdez & Luis Vieira. All rights reserved.
 //
 
-/*
- * Cosas que faltan por hacer:
- * - Cambias los testResult int por un vector de rsultados, y crear las neuronas de la capa
- * output por el numero de reusltados esperados
- * - Agregr por input el numero de capapas y sus neuronas correspondientes.
- */
 #include <iostream>
 #include <limits>
 #include "brain.h"
@@ -21,6 +15,9 @@ using namespace std;
 int numVariables;
 vector<vector<float>> testCases;
 vector<vector<float>> testResults;
+
+vector<vector<float>> controlCases;
+vector<vector<float>> controlResults;
 
 
 vector<string> split(string work, char delim, int rep)
@@ -46,7 +43,7 @@ vector<string> split(string work, char delim, int rep)
     return output;
 }
 
-void readInputs(const char * casesFile,int percent)
+void readInputs(const char * casesFile)
 {
     string line;
     vector<string> strs;
@@ -81,30 +78,53 @@ void readInputs(const char * casesFile,int percent)
 
     }
     myfile.close();
-    
-    //takeData(percent);
+    if ((int)testCases.size() < 1)
+    {
+        perror("Error with input file and percent of the data" );
+        exit(1);
+    }
     numVariables = (int)testCases[0].size();
+}
+
+void takeDataPercent(int percent)
+{
+    if (percent > 100)
+    {
+        percent = 100;
+    } else if (percent < 0)
+    {
+        percent = 0;
+    }
+    
+    int awayData = ((100 - percent) * (int)testCases.size() ) / 100;
+    for (int i = 0; i < awayData; i++)
+    {
+        controlResults.push_back(testResults.back());
+        testResults.pop_back();
+        controlCases.push_back(testCases.back());
+        testCases.pop_back();
+    }
+    if ((int)testCases.size() < 1)
+    {
+        perror("Error with input file and percent of the data" );
+        exit(1);
+    }
 }
 
 int main(int argc, const char * argv[])
 {
     srand((unsigned)(time(NULL)));
     
-    /*
-     * numL - numero de Layer
-     * sizeXL[i] - numero de Neuronas por cada layer
-     * sizeWN[i] - numero de pesos de las neuronas de cada Layer
-     * TR - training rate
-     * MR - momentun rate
-     */
+    readInputs(argv[1]);
     
-    readInputs(argv[1], 100);
+    takeDataPercent(100);
     
     float threshold = 0.1;
     float traiRate = 0.1;
     float momentRate = 0.1;
     int numNeuHid = 2;
     int MAX_ITER = 10000;
+    
     //---------------
     int numLayers = 3;
     int nNeuronas[3] = {numVariables, numNeuHid, 1};
