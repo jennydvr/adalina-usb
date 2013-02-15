@@ -129,7 +129,10 @@ int main(int argc, const char * argv[])
     
     //feedforward con los datos y luego pedir el output
     
-    //cout << Brain::Instance()->calculateMSError(results[iter%sizeTestCases]) << endl;
+    cout << Brain::Instance()->calculateMSError(testResults[0]) << endl;
+    cout << Brain::Instance()->calculateMSError(testResults[1]) << endl;
+    cout << Brain::Instance()->calculateMSError(testResults[2]) << endl;
+    cout << Brain::Instance()->calculateMSError(testResults[3]) << endl;
     
     return 0;
 }
