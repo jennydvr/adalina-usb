@@ -41,7 +41,7 @@ float activationFunction(float sum)
     return (1/(1+exp(-sum)));
 }
 
-void Brain::updateFeedForward(std::vector<float> input)
+void Brain::FeedForward(std::vector<float> input)
 {
     _layers[0].updateOutput(input,NULL);
     
@@ -71,7 +71,7 @@ void Brain::updateWeight()
 void Brain::BackPropagation(std::vector<float> input, std::vector<float>expectedResult)
 {
     
-    updateFeedForward(input);
+    FeedForward(input);
     
     updateDeltas(expectedResult );
     
@@ -92,6 +92,12 @@ float Brain::calculateMSError(std::vector<float> expectedResult)
 
     return mse/2;
 }
+
+float Brain::Out(int pos)
+{
+    return _layers.back().getOutputs()[pos];;
+}
+
 /*
 void Brain::initNeuron(Type_Neuron type, float _trainingRate)
 {

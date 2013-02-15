@@ -33,10 +33,7 @@ protected:
     
     std::vector <Layer> _layers;
     
-    /*
-     * Actualiza los valores de output de cada neurona
-     */
-    void updateFeedForward(std::vector<float> input);
+   
     
     void updateDeltas(std::vector<float> expectedResult );
     
@@ -102,6 +99,13 @@ public:
      * MR - momentun rate
      */
     void Initiliaze( int numL, std::vector<int> sizeXL ,std::vector<int> sizeWN, float TR, float MR );
+    
+    /*
+     * Actualiza los valores de output de cada neurona
+     */
+    void FeedForward(std::vector<float> input);
+    
+    float Out(int pos);
     /*
      FirstTrain the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator. Percent take only a part of input data.
