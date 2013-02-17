@@ -122,9 +122,9 @@ int main(int argc, const char * argv[])
     takeDataPercent(100);
     
     float threshold = 0.1;
-    float traiRate = 0.3;
-    float momentRate = 0.1;
-    int numNeuHid = 4;
+    float traiRate = 0.1;
+    float momentRate = 0;
+    int numNeuHid = 5;
     int MAX_ITER = 100000;
     
     //---------------

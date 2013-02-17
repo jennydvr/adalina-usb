@@ -41,7 +41,9 @@ void Brain::Initiliaze( int numL, vector<int> sizeXL ,vector<int> sizeWN, float 
 
 float activationFunction(float sum)
 {
-   return ( 2.0 /(1.0+exp(-sum)) )  - 1.0;
+    float e = exp(-sum);
+    
+    return -1.0 + (2.0/(1.0+e));
 
 }
 
