@@ -12,8 +12,9 @@ Neuron::Neuron(int numW, bool randomizeW)
 {
     float w = 0;
     for (int i = 0; i != numW; ++i) {
-        if (randomizeW)
-            w = (float)(rand())/(RAND_MAX/2) - 1;
+        if (randomizeW) {
+            w = -0.5 + (float)rand()/((float)RAND_MAX/(0.5-(-0.5)));
+        }
         
         _weights.push_back(w);
         _previousWeights.push_back(0);
@@ -36,6 +37,13 @@ void Neuron::setWeight(float tr, std::vector<float> output)
     
     _previousWeights[size] = tr * _deltaError;
     _weights[size] +=  _previousWeights[size];
+}
+
+void Neuron::setWeight(float mr)
+{
+    for (int k = 0; k != _weights.size() + 1; ++k) {
+        _weights[k] += mr * _previousWeights[k];
+    }
 }
 
 float Neuron::getDelta()

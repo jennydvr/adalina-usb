@@ -29,7 +29,7 @@ protected:
     float _trainingRate;
     
     //Valor del momentum, 0.0 si no se aplica.
-    float _momentunRate;
+    float _momentumRate;
     
     std::vector <Layer> _layers;
     
@@ -84,10 +84,8 @@ public:
 
     static Brain * Instance();
     
-    /*
-     * Calcula el error cuadratico medio de la red neuroal, usando los result como el valor esperado.
-     */
-    float calculateMSError(std::vector<float> expectedResult);
+    // Calcula el MSE parcial del ultimo caso evaluado, usando los expectedOut como el valor real.
+    float calculateMSE(vector<float> expectedOut);
     
     void BackPropagation(std::vector<float> input, std::vector<float>expectedResult);
     

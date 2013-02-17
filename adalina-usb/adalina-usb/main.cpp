@@ -9,6 +9,8 @@
 #include <iostream>
 #include <limits>
 #include "brain.h"
+#include "draftsman.h"
+#include "randomGenerator.h"
 
 using namespace std;
 
@@ -61,7 +63,7 @@ void readInputs(const char * casesFile)
         if (!myfile.good())
             break;
         
-        strs = split(line,',',1);
+        strs = split(line,' ',1);
         vector<float> testValues;
         vector<float> resultValues;
         for (size_t n = 0; n != strs.size()-1; ++n)
@@ -120,10 +122,10 @@ int main(int argc, const char * argv[])
     takeDataPercent(100);
     
     float threshold = 0.1;
-    float traiRate = 0.1;
+    float traiRate = 0.3;
     float momentRate = 0.1;
-    int numNeuHid = 2;
-    int MAX_ITER = 10000;
+    int numNeuHid = 4;
+    int MAX_ITER = 100000;
     
     //---------------
     int numLayers = 3;
@@ -136,24 +138,26 @@ int main(int argc, const char * argv[])
                                   traiRate, momentRate );
     
     int sizeTestCases = (int)testCases.size();
-    for (int iter  = 0; iter < MAX_ITER; iter++) {
-        int pos = iter%sizeTestCases;
-        Brain::Instance()->BackPropagation(testCases[pos], testResults[pos]);
+    int epoch;
+    
+    for (epoch = 0; epoch != MAX_ITER; ++epoch) {
         
-        if(  Brain::Instance()->calculateMSError(testResults[pos]) < threshold)
-        {
-            break;
+        float mse = 0.0;
+        
+        for (int c = 0; c != sizeTestCases; ++c) {
+            Brain::Instance()->BackPropagation(testCases[c], testResults[c]);
+            mse += Brain::Instance()->calculateMSE(testResults[c]);
         }
         
+        mse /= sizeTestCases;
+        
+        cout << epoch + 1 << ";" << mse << endl;
+        
+        if (mse < threshold)
+            break;
     }
     
     //feedforward con los datos y luego pedir el output
     
-    cout << Brain::Instance()->calculateMSError(testResults[0]) << endl;
-    cout << Brain::Instance()->calculateMSError(testResults[1]) << endl;
-    cout << Brain::Instance()->calculateMSError(testResults[2]) << endl;
-    cout << Brain::Instance()->calculateMSError(testResults[3]) << endl;
-    
     return 0;
 }
-

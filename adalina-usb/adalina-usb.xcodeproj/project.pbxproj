@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0036D28C16CED64800BB4E99 /* draftsman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0036D28A16CED64800BB4E99 /* draftsman.cpp */; };
 		0071C05916C1899100DA8AC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C05816C1899100DA8AC9 /* main.cpp */; };
 		0071C06316C19B8300DA8AC9 /* neuron.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0071C06116C19B8300DA8AC9 /* neuron.cpp */; };
 		0087133D16CEABC00060A60F /* randomGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0087133B16CEABC00060A60F /* randomGenerator.cpp */; };
@@ -28,6 +29,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0036D28A16CED64800BB4E99 /* draftsman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = draftsman.cpp; sourceTree = "<group>"; };
+		0036D28B16CED64800BB4E99 /* draftsman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draftsman.h; sourceTree = "<group>"; };
+		0036D28F16CEEC7E00BB4E99 /* bitmap_image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_image.hpp; sourceTree = "<group>"; };
 		0071C05416C1899100DA8AC9 /* adalina-usb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "adalina-usb"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0071C05816C1899100DA8AC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		0071C06116C19B8300DA8AC9 /* neuron.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neuron.cpp; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 		0071C05716C1899100DA8AC9 /* adalina-usb */ = {
 			isa = PBXGroup;
 			children = (
+				0036D28F16CEEC7E00BB4E99 /* bitmap_image.hpp */,
 				2E61F13616C2E1A600E80CC4 /* brain.cpp */,
 				2E61F13716C2E1A600E80CC4 /* brain.h */,
 				0071C05816C1899100DA8AC9 /* main.cpp */,
@@ -83,6 +88,8 @@
 				2E044AEF16CAE519005E6130 /* layer.h */,
 				0087133B16CEABC00060A60F /* randomGenerator.cpp */,
 				0087133C16CEABC00060A60F /* randomGenerator.h */,
+				0036D28A16CED64800BB4E99 /* draftsman.cpp */,
+				0036D28B16CED64800BB4E99 /* draftsman.h */,
 			);
 			path = "adalina-usb";
 			sourceTree = "<group>";
@@ -144,6 +151,7 @@
 				2E388D6316C43ABF00DA79FD /* DecimalSeparator.cpp in Sources */,
 				2E044AF016CAE519005E6130 /* layer.cpp in Sources */,
 				0087133D16CEABC00060A60F /* randomGenerator.cpp in Sources */,
+				0036D28C16CED64800BB4E99 /* draftsman.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

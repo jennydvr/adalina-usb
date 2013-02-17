@@ -10,5 +10,11 @@
 #define __adalina_usb__randomGenerator__
 
 #include <iostream>
+#include <random>
+#include <vector>
+#include <fstream>
+#include <sstream>
+
+extern void generateTestCase(int size);
 
 #endif /* defined(__adalina_usb__randomGenerator__) */

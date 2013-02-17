@@ -43,12 +43,14 @@ public:
      */
     void updateOutput(std::vector<float> outputs, float (* activationF)(float));
     
-    void updateWeight(float tr, std::vector<float> outputs);
+    void updateWeight(float tr, std::vector<float> outputs = std::vector<float>());
 
     float getSumWeightNeurons(int pos);
     
     std::vector<float> getOutputs();
     
-    float getSquareError(std::vector<float> expectedOut);
+    // Obtiene la diferencia entre el valor esperado y el valor real (expectedOut)
+    float getDifference(std::vector<float> expectedOut);
+    
 };
 #endif /* defined(__adalina_usb__layer__) */

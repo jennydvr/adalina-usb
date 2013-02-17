@@ -44,6 +44,9 @@ public:
     //Actualiza los pesos
     void setWeight(float tr, vector<float> output);
     
+    //Actualiza los pesos con momentum
+    void setWeight(float mr);
+    
     //Obtiene el delta
     float getDelta();
     
