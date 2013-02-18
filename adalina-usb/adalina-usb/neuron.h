@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <math.h>
+#include <random>
 #include <stdlib.h>
 
 using namespace std;

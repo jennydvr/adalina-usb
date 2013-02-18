@@ -10,22 +10,30 @@
 
 Neuron::Neuron(int numW, bool randomizeW)
 {
-    float w = 0;
-    for (int i = 0; i != numW; ++i) {
-        if (randomizeW) {
-            w = -0.5 + (float)rand()/((float)RAND_MAX/(0.5-(-0.5)));
+    if (!randomizeW)
+    {
+        for (int i = 0; i != numW; ++i) {
+            _weights.push_back(0);
+            _previousWeights.push_back(0);
         }
+    }
+    else
+    {
+        unsigned int seed = (unsigned int)std::chrono::system_clock::now().time_since_epoch().count();
+        std::default_random_engine generator(seed);
+        std::uniform_real_distribution<double> distribution(-1, 1);
         
-        _weights.push_back(w);
-        _previousWeights.push_back(0);
+        for (int i = 0; i != numW; ++i) {
+            _weights.push_back(distribution(generator));
+            _previousWeights.push_back(0);
+        }
     }
 }
 
 void Neuron::setDelta(float value)
 {
 
-    
-    _deltaError = 0.5*(1+_output) * ( 1 - _output ) * ( value );
+    _deltaError = 0.5 * (1 - _output * _output) * value;
 }
 
 void Neuron::setWeight(float tr, std::vector<float> output)
@@ -43,7 +51,7 @@ void Neuron::setWeight(float tr, std::vector<float> output)
 
 void Neuron::setWeight(float mr)
 {
-    for (int k = 0; k != _weights.size() + 1; ++k) {
+    for (int k = 0; k != _weights.size() ; ++k) {
         _weights[k] += mr * _previousWeights[k];
     }
 }

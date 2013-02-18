@@ -41,10 +41,7 @@ void Brain::Initiliaze( int numL, vector<int> sizeXL ,vector<int> sizeWN, float 
 
 float activationFunction(float sum)
 {
-    float e = exp(-sum);
-    
-    return -1.0 + (2.0/(1.0+e));
-
+    return 2.0 / (1.0 + exp(-sum)) - 1.0;
 }
 
 void Brain::FeedForward(vector<float> input)
@@ -65,7 +62,7 @@ void Brain::updateDeltas(vector<float> expectedResult )
      _layers[_layers.size()-1].setDeltas(expectedResult);
    
     for (int i  = (int) _layers.size() - 2; i > 0 ; i--) {
-        _layers[i].setDeltas( _layers[i+1]);
+        _layers[i].setDeltas(_layers[i+1]);
     }    
 }
 

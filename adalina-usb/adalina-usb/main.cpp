@@ -123,8 +123,8 @@ int main(int argc, const char * argv[])
     
     float threshold = 0.1;
     float traiRate = 0.1;
-    float momentRate = 0;
-    int numNeuHid = 5;
+    float momentRate = 0.05f;
+    int numNeuHid = 10;
     int MAX_ITER = 100000;
     
     //---------------
