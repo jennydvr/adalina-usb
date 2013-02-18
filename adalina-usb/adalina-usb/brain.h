@@ -103,7 +103,7 @@ public:
      */
     void FeedForward(std::vector<float> input);
     
-    float Out(int pos);
+    vector<float> Out();
     /*
      FirstTrain the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator. Percent take only a part of input data.

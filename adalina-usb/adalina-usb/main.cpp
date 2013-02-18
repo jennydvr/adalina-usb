@@ -20,7 +20,7 @@ vector<vector<float>> testResults;
 
 vector<vector<float>> controlCases;
 vector<vector<float>> controlResults;
-
+vector<vector<float>> controlOutputs;
 
 vector<string> split(string work, char delim, int rep)
 {
@@ -45,7 +45,7 @@ vector<string> split(string work, char delim, int rep)
     return output;
 }
 
-void readInputs(const char * casesFile)
+void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases,vector<vector<float>> &result )
 {
     string line;
     vector<string> strs;
@@ -63,7 +63,7 @@ void readInputs(const char * casesFile)
         if (!myfile.good())
             break;
         
-        strs = split(line,' ',1);
+        strs = split(line,separator,1);
         vector<float> testValues;
         vector<float> resultValues;
         for (size_t n = 0; n != strs.size()-1; ++n)
@@ -72,20 +72,19 @@ void readInputs(const char * casesFile)
             
         }
         
-        testCases.push_back(testValues);
+        cases.push_back(testValues);
         
         resultValues.push_back((float)atof(strs[strs.size()-1].c_str()));
-        testResults.push_back(resultValues);
+        result.push_back(resultValues);
         
 
     }
     myfile.close();
-    if ((int)testCases.size() < 1)
+    if ((int)cases.size() < 1)
     {
         perror("Error with input file and percent of the data" );
         exit(1);
     }
-    numVariables = (int)testCases[0].size();
 }
 
 void takeDataPercent(int percent)
@@ -117,10 +116,19 @@ int main(int argc, const char * argv[])
 {
     srand((unsigned)(time(NULL)));
     
-    readInputs(argv[1]);
+    readInputs(argv[1],' ',testCases, testResults);
     
-    takeDataPercent(100);
     
+    if (argv[2] != NULL) {
+        readInputs(argv[2],' ',controlCases, controlResults);
+    }
+    else{
+
+        takeDataPercent(100);
+    }
+    
+    
+    numVariables = (int)testCases[0].size();
     float threshold = 0.1;
     float traiRate = 0.1;
     float momentRate = 0.05f;
@@ -158,6 +166,18 @@ int main(int argc, const char * argv[])
     }
     
     //feedforward con los datos y luego pedir el output
+    
+    if (controlCases.size() > 0) {
+        
+        for (int i = 0; i != (int)controlCases.size(); i++) {
+            
+            Brain::Instance()->FeedForward(controlCases[i]);
+            controlOutputs.push_back( Brain::Instance()->Out());
+        
+        }
+        createBitmap(controlCases, controlOutputs);
+    }
+    
     
     return 0;
 }

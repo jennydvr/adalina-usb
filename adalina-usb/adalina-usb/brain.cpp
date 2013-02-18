@@ -98,7 +98,7 @@ float Brain::calculateMSE(vector<float> expectedOut)
     return _layers[(int)_layers.size() - 1].getDifference(expectedOut);
 }
 
-float Brain::Out(int pos)
+vector<float> Brain::Out()
 {
-    return _layers.back().getOutputs()[pos];;
+    return _layers.back().getOutputs();
 }
