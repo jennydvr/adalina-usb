@@ -37,8 +37,6 @@ protected:
     
     void updateDeltas(std::vector<float> expectedResult );
     
-    void applyMomentum();
-    
     void updateWeight();
     
 
