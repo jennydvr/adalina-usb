@@ -123,7 +123,7 @@ int main(int argc, const char * argv[])
     
     float threshold = 0.1;
     float traiRate = 0.1;
-    float momentRate = 0.05f;
+    float momentRate = 0.075f;
     int numNeuHid = 10;
     int MAX_ITER = 100000;
     
@@ -153,8 +153,8 @@ int main(int argc, const char * argv[])
         
         cout << epoch + 1 << ";" << mse << endl;
         
-        if (mse < threshold)
-            break;
+       // if (mse < threshold)
+         //   break;
     }
     
     //feedforward con los datos y luego pedir el output

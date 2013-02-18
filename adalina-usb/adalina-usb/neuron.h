@@ -32,6 +32,9 @@ protected:
     //Opcional, guarda el cambio en el peso de  un frame anterior
     vector<float> _previousWeights;
     
+    //Calcula la norma del vector de pesos
+    float getNorm();
+    
 public:
     
     //Inicializa una neurona
@@ -43,10 +46,10 @@ public:
     void setDelta(float value);
     
     //Actualiza los pesos
-    void setWeight(float tr, vector<float> output);
+    void setWeight(float tr, float mr, std::vector<float> output);
     
-    //Actualiza los pesos con momentum
-    void setWeight(float mr);
+    //Actualiza los pesos (inicializacion de Nguyen-Widrow)
+    void NguyenWidrowInitialization(float beta);
     
     //Obtiene el delta
     float getDelta();

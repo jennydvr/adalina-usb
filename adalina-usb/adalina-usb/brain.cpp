@@ -31,12 +31,17 @@ void Brain::Initiliaze( int numL, vector<int> sizeXL ,vector<int> sizeWN, float 
         perror("Dont match size of the layer with the input weigth and number of neurons.");
         exit(1);
     }
+    
     _layers.push_back(Layer(INPUT_LAYER, sizeWN[0], sizeXL[0]));
 
-    for (int i = 1; i < numL-1; i++) {
+    for (int i = 1; i < numL-1; ++i)
         _layers.push_back(Layer(HIDDEN_LAYER, sizeWN[i], sizeXL[i]));
-    }
+    
     _layers.push_back(Layer(OUTPUT_LAYER,sizeWN[numL-1], sizeXL[numL-1]));
+    
+    //Nguyen-Widrow initialization
+    for (int i = 1; i != numL; ++i)
+        _layers[i].NguyenWidrowInitialization(sizeXL[0]);
 }
 
 float activationFunction(float sum)
@@ -48,36 +53,22 @@ void Brain::FeedForward(vector<float> input)
 {
     _layers[0].updateOutput(input,NULL);
     
-    for (int i = 1; i < (int)_layers.size() ; i++) {
-        
+    for (int i = 1; i < (int)_layers.size() ; ++i)
         _layers[i].updateOutput(_layers[i-1].getOutputs(),activationFunction);
-    }
-    
-    
 }
 
 void Brain::updateDeltas(vector<float> expectedResult )
 {
-    
      _layers[_layers.size()-1].setDeltas(expectedResult);
    
-    for (int i  = (int) _layers.size() - 2; i > 0 ; i--) {
+    for (int i = (int) _layers.size() - 2; i > 0 ; --i)
         _layers[i].setDeltas(_layers[i+1]);
-    }    
-}
-
-void Brain::applyMomentum()
-{
-    for (int i  = 1; i < (int) _layers.size(); i++) {
-        _layers[i].updateWeight(_momentumRate);
-    }
 }
 
 void Brain::updateWeight()
 {
-    for (int i  = 1; i < (int) _layers.size(); i++) {
-        _layers[i].updateWeight(_trainingRate,_layers[i-1].getOutputs());
-    }
+    for (int i = 1; i < (int) _layers.size(); ++i)
+        _layers[i].updateWeight(_trainingRate, _momentumRate, _layers[i-1].getOutputs());
 }
 
 
@@ -85,10 +76,6 @@ void Brain::BackPropagation(vector<float> input, vector<float>expectedResult)
 {
     FeedForward(input);
     updateDeltas(expectedResult);
-    
-    //aplicar momentums
-    applyMomentum();
-    
     updateWeight();
 }
 

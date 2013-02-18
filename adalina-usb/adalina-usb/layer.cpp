@@ -31,6 +31,13 @@ Layer::Layer(Type_Layer type, int numW, int numN)
     }
 }
 
+void Layer::NguyenWidrowInitialization(int i) {
+    float beta = 0.7 * pow(float(_neurons.size()), 1/float(i));
+    
+    for (int k = 0; k != _neurons.size(); ++k)
+        _neurons[k].NguyenWidrowInitialization(beta);
+}
+
 float Layer::getSumWeightNeurons(int pos)
 {
     float sum = 0;
@@ -74,17 +81,10 @@ void Layer::updateOutput(std::vector<float> outputs,float (* activationF)(float)
     }
 }
 
-void Layer::updateWeight(float tr, std::vector<float> outputs)
+void Layer::updateWeight(float tr, float mr, std::vector<float> outputs)
 {
-    // Training rate
-    if (outputs.size() != 0)
-        for (int j = 0; j != (int)_neurons.size(); ++j)
-            _neurons[j].setWeight(tr, outputs);
-    
-    // Momentum
-    else
-        for (int j = 0; j != (int)_neurons.size(); ++j)
-            _neurons[j].setWeight(tr);
+    for (int j = 0; j != (int)_neurons.size(); ++j)
+        _neurons[j].setWeight(tr, mr, outputs);
 }
 
 std::vector<float> Layer::getOutputs()

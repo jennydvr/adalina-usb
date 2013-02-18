@@ -38,12 +38,15 @@ public:
      */
     Layer( Type_Layer type, int numW, int numN);
     
+    //Inicializa los pesos con el metodo de Nguyen-Widrow, siendo i el num de neuronas input
+    void NguyenWidrowInitialization(int i);
+    
     /*
      * outputs - valores asignados a cada neurona correspondiente
      */
     void updateOutput(std::vector<float> outputs, float (* activationF)(float));
     
-    void updateWeight(float tr, std::vector<float> outputs = std::vector<float>());
+    void updateWeight(float tr, float mr, std::vector<float> outputs);
 
     float getSumWeightNeurons(int pos);
     
