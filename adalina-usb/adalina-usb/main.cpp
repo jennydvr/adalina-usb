@@ -11,6 +11,7 @@
 #include "brain.h"
 #include "draftsman.h"
 #include "randomGenerator.h"
+#include "StringHelper.h"
 
 using namespace std;
 
@@ -22,28 +23,7 @@ vector<vector<float>> controlCases;
 vector<vector<float>> controlResults;
 vector<vector<float>> controlOutputs;
 
-vector<string> split(string work, char delim, int rep)
-{
-    vector<string> output;
-    
-    string buf = "";
-    int i = 0;
-    while (i < work.length()) {
-        if (work[i] != delim)
-            buf += work[i];
-        else if (rep == 1) {
-            output.push_back(buf);
-            buf = "";
-        } else if (buf.length() > 0) {
-            output.push_back(buf);
-            buf = "";
-        }
-        ++i;
-    }
-    if (!buf.empty())
-        output.push_back(buf);
-    return output;
-}
+
 
 void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases,vector<vector<float>> &result )
 {
@@ -129,21 +109,29 @@ int main(int argc, const char * argv[])
     
     
     numVariables = (int)testCases[0].size();
-    float threshold = 0.1;
-    float traiRate = 0.1;
+    float threshold = 0.3;
+    float traiRate = 0.3;
     float momentRate = 0.075f;
     int numNeuHid = 10;
-    int MAX_ITER = 100000;
+    int MAX_ITER = 1000000;
     
     //---------------
     int numLayers = 3;
     int nNeuronas[3] = {numVariables, numNeuHid, 1};
     int nPesos[3] = {1, numVariables+1, numNeuHid+1};
 
-    Brain::Instance()->Initiliaze(numLayers,
-                                  vector<int>(nNeuronas, nNeuronas + 3),
-                                  vector<int>(nPesos, nPesos + 3),
-                                  traiRate, momentRate );
+    vector<int> weightInput = vector<int>(nNeuronas, nNeuronas + 3);
+    vector<int> neuronInput = vector<int>(nPesos, nPesos + 3);
+    if (argv[3] != NULL) {
+        Brain::Instance()->Initiliaze(argv[3], neuronInput[0], weightInput[0], traiRate, momentRate);
+    }
+    else{
+        Brain::Instance()->Initiliaze(numLayers,
+                                      weightInput,
+                                      neuronInput,
+                                      traiRate, momentRate );
+    }
+ 
     
     int sizeTestCases = (int)testCases.size();
     int epoch;
@@ -161,12 +149,12 @@ int main(int argc, const char * argv[])
         
         cout << epoch + 1 << ";" << mse << endl;
         
-       // if (mse < threshold)
-         //   break;
+        if (mse < threshold)
+            break;
     }
     
     //feedforward con los datos y luego pedir el output
-    
+    Brain::Instance()->toFile("pesos.txt");
     if (controlCases.size() > 0) {
         
         for (int i = 0; i != (int)controlCases.size(); i++) {

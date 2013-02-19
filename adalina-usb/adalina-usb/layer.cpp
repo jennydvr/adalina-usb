@@ -31,6 +31,19 @@ Layer::Layer(Type_Layer type, int numW, int numN)
     }
 }
 
+Layer::Layer(ifstream &file)
+{
+    string line;
+    getline (file,line);
+    int numNeu = (int) atoi(line.c_str());
+ //   cout << "Numero de Neuronas: "<<numNeu <<endl;
+
+    for (int i = 0; i != numNeu; ++i) {
+        _neurons.push_back(Neuron(file));
+        _outp.push_back(0);
+    }
+}
+
 void Layer::NguyenWidrowInitialization(int i) {
     float beta = 0.7 * pow(float(_neurons.size()), 1/float(i));
     
@@ -103,4 +116,15 @@ float Layer::getDifference(std::vector<float> expectedOut)
     }
     
     return sum;
+}
+
+void Layer::toFile( ostream &os)
+{
+    os << _neurons.size() << endl;
+    for (int i =0; i != (int)_neurons.size(); ++i) {
+        
+        _neurons[i].toFile(os);
+    }
+    
+    
 }

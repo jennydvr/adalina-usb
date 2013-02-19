@@ -8,6 +8,26 @@
 
 #include "neuron.h"
 
+Neuron::Neuron(ifstream &file)
+{
+    string line;
+    getline (file,line);
+    int numWei = (int) atoi(line.c_str());
+//    cout << "Numero de pesos: "<<numWei <<endl;
+
+    vector<string> strs;
+    for (int i = 0; i != numWei; ++i) {
+        getline (file,line);
+        strs = split(line,':',1);
+        _weights.push_back((float) atof(strs[0].c_str()));
+        _previousWeights.push_back((float) atof(strs[1].c_str()));
+        
+ //       cout << "W: "<< _weights.back()<<" P: "<<_previousWeights.back() <<endl;
+
+    }
+
+    
+}
 Neuron::Neuron(int numW, bool randomizeW)
 {
     if (!randomizeW)
@@ -104,4 +124,15 @@ float Neuron::getSumWeightWithVector(std::vector<float> output)
 void Neuron::setOutput(float output)
 {
     _output = output;
+}
+
+void Neuron::toFile(ostream &os)
+{
+    os << _weights.size() << endl;
+    for (int i =0; i != (int)_weights.size(); ++i) {
+        
+        os << _weights[i]<<":"<< _previousWeights[i]<< endl;
+    }
+
+    
 }

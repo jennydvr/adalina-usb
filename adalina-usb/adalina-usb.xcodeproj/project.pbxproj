@@ -13,6 +13,7 @@
 		0087133D16CEABC00060A60F /* randomGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0087133B16CEABC00060A60F /* randomGenerator.cpp */; };
 		2E044AF016CAE519005E6130 /* layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E044AEE16CAE519005E6130 /* layer.cpp */; };
 		2E388D6316C43ABF00DA79FD /* DecimalSeparator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E388D6116C43ABF00DA79FD /* DecimalSeparator.cpp */; };
+		2E51A6E916D3248400647EB7 /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E51A6E716D3248300647EB7 /* StringHelper.cpp */; };
 		2E61F13816C2E1A600E80CC4 /* brain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E61F13616C2E1A600E80CC4 /* brain.cpp */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		2E044AEF16CAE519005E6130 /* layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = layer.h; sourceTree = "<group>"; };
 		2E388D6116C43ABF00DA79FD /* DecimalSeparator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DecimalSeparator.cpp; sourceTree = "<group>"; };
 		2E388D6216C43ABF00DA79FD /* DecimalSeparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecimalSeparator.h; sourceTree = "<group>"; };
+		2E51A6E716D3248300647EB7 /* StringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
+		2E51A6E816D3248300647EB7 /* StringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
 		2E61F13616C2E1A600E80CC4 /* brain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brain.cpp; sourceTree = "<group>"; };
 		2E61F13716C2E1A600E80CC4 /* brain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brain.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +93,8 @@
 				0087133C16CEABC00060A60F /* randomGenerator.h */,
 				0036D28A16CED64800BB4E99 /* draftsman.cpp */,
 				0036D28B16CED64800BB4E99 /* draftsman.h */,
+				2E51A6E716D3248300647EB7 /* StringHelper.cpp */,
+				2E51A6E816D3248300647EB7 /* StringHelper.h */,
 			);
 			path = "adalina-usb";
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				2E044AF016CAE519005E6130 /* layer.cpp in Sources */,
 				0087133D16CEABC00060A60F /* randomGenerator.cpp in Sources */,
 				0036D28C16CED64800BB4E99 /* draftsman.cpp in Sources */,
+				2E51A6E916D3248400647EB7 /* StringHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

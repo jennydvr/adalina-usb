@@ -11,7 +11,7 @@
 
 #include "neuron.h"
 #include <iostream>
-
+#include <fstream>
 //Este enum no es necesario, solo es prueba
 enum Type_Layer {INPUT_LAYER, OUTPUT_LAYER, HIDDEN_LAYER};
 
@@ -38,6 +38,7 @@ public:
      */
     Layer( Type_Layer type, int numW, int numN);
     
+    Layer(ifstream &file);
     //Inicializa los pesos con el metodo de Nguyen-Widrow, siendo i el num de neuronas input
     void NguyenWidrowInitialization(int i);
     
@@ -54,6 +55,8 @@ public:
     
     // Obtiene la diferencia entre el valor esperado y el valor real (expectedOut)
     float getDifference(std::vector<float> expectedOut);
+    
+    void toFile( ostream &os);
     
 };
 #endif /* defined(__adalina_usb__layer__) */

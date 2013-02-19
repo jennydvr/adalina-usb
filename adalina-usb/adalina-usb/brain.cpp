@@ -43,7 +43,35 @@ void Brain::Initiliaze( int numL, vector<int> sizeXL ,vector<int> sizeWN, float 
     for (int i = 1; i != numL; ++i)
         _layers[i].NguyenWidrowInitialization(sizeXL[0]);
 }
-
+void Brain::Initiliaze( const char * file,int numNeuInput,int sizeWeiInput ,float TR, float MR )
+{
+    _trainingRate = TR;
+    _momentumRate = MR;
+    
+    string line;
+    vector<string> strs;
+    
+    ifstream myfile(file);
+    
+    if (!myfile.is_open()) {
+       perror( "Unable to open file." );
+        exit(1);
+    }
+    
+    getline (myfile,line);
+    int numL = (int) atoi(line.c_str());
+ //   cout << "Numero de Layers: "<<numL <<endl;
+    _layers.push_back(Layer(INPUT_LAYER, sizeWeiInput, numNeuInput));    
+    for (int i = 0; i !=numL; ++i) {
+       
+        _layers.push_back(Layer(myfile));
+        
+    }
+    
+    
+    myfile.close();
+    
+}
 float activationFunction(float sum)
 {
     return 2.0 / (1.0 + exp(-sum)) - 1.0;
@@ -88,4 +116,18 @@ float Brain::calculateMSE(vector<float> expectedOut)
 vector<float> Brain::Out()
 {
     return _layers.back().getOutputs();
+}
+
+void Brain::toFile (const char * name)
+{
+    filebuf fb;
+    fb.open (name,ios::out);
+    ostream os(&fb);
+    os << _layers.size() -1<< endl;
+    for (int i =1; i != (int)_layers.size(); ++i) {
+        
+        _layers[i].toFile(os);
+    }
+    
+    fb.close();
 }

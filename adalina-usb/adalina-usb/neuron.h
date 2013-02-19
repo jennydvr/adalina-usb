@@ -13,7 +13,8 @@
 #include <math.h>
 #include <random>
 #include <stdlib.h>
-
+#include <fstream>
+#include "StringHelper.h"
 using namespace std;
 
 class Neuron {
@@ -42,6 +43,7 @@ public:
     //  randimizeW - activar pesos aleatorios
     Neuron(int numW, bool randomizeW);
     
+    Neuron(ifstream &file);
     //Actualiza el delta de la neurona, el value depende de cada tipo de capa
     void setDelta(float value);
     
@@ -69,6 +71,8 @@ public:
     //Obtiene un peso dado
     float getWeight(int pos);
     
+    void toFile(ostream &os);
+
 };
 
 #endif /* defined(__adalina_usb__neuron__) */

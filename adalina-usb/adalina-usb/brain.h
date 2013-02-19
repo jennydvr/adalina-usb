@@ -96,12 +96,17 @@ public:
      */
     void Initiliaze( int numL, std::vector<int> sizeXL ,std::vector<int> sizeWN, float TR, float MR );
     
+    void Initiliaze( const char * file,int numNeuInput,int sizeWeiInput ,float TR, float MR );
+    
     /*
      * Actualiza los valores de output de cada neurona
      */
     void FeedForward(std::vector<float> input);
     
     vector<float> Out();
+    
+    void toFile (const char * name);
+    
     /*
      FirstTrain the brain and her neurons, by number of neurons, parser casesFile, minimun error and
      maximun of iterator. Percent take only a part of input data.
