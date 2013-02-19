@@ -129,9 +129,9 @@ int main(int argc,  char * argv[])
     numVariables = (int)testCases[0].size();
     float threshold = 0.01;
     float traiRate = 0.3;
-    float momentRate = 0.075f;
-    int numNeuHid = 10;
-    int MAX_ITER = 100;
+    float momentRate = 0.05;
+    int numNeuHid = 7;
+    int MAX_ITER = 10000;
     
     //---------------
     int numLayers = 3;
@@ -140,15 +140,15 @@ int main(int argc,  char * argv[])
 
     vector<int> weightInput = vector<int>(nNeuronas, nNeuronas + 3);
     vector<int> neuronInput = vector<int>(nPesos, nPesos + 3);
-    /*if (argv[3] != NULL) {
-        Brain::Instance()->Initiliaze(argv[3], neuronInput[0], weightInput[0], traiRate, momentRate);
-    }
-    else{*/
+   // if (argv[3] != NULL) {
+     //   Brain::Instance()->Initiliaze(argv[3], neuronInput[0], weightInput[0], traiRate, momentRate);
+    //}
+    //else{
         Brain::Instance()->Initiliaze(numLayers,
                                       weightInput,
                                       neuronInput,
                                       traiRate, momentRate );
-   // }
+    //}
  
     
     int sizeTestCases = (int)testCases.size();
@@ -165,9 +165,8 @@ int main(int argc,  char * argv[])
         }
         
         mse /= sizeTestCases;
-        mp.x.push_back(epoch+1);
-        mp.y.push_back(mse);
-        cout << epoch + 1 << ";" << mse << endl;
+        
+        
         
         // Probar
         float pmse = 0.0;
@@ -181,6 +180,8 @@ int main(int argc,  char * argv[])
         
         
         cout << epoch + 1 << ";" << pmse << endl;
+        mp.x.push_back(epoch+1);
+        mp.y.push_back(pmse);
         
         if (pmse < threshold)
             break;
