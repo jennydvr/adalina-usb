@@ -92,7 +92,7 @@ void takeDataPercent(int percent)
     }
 }
 
-int main(int argc, const char * argv[])
+int main(int argc,  char * argv[])
 {
     srand((unsigned)(time(NULL)));
     
@@ -113,7 +113,7 @@ int main(int argc, const char * argv[])
     float traiRate = 0.3;
     float momentRate = 0.075f;
     int numNeuHid = 10;
-    int MAX_ITER = 1000000;
+    int MAX_ITER = 100;
     
     //---------------
     int numLayers = 3;
@@ -122,15 +122,15 @@ int main(int argc, const char * argv[])
 
     vector<int> weightInput = vector<int>(nNeuronas, nNeuronas + 3);
     vector<int> neuronInput = vector<int>(nPesos, nPesos + 3);
-    if (argv[3] != NULL) {
+    /*if (argv[3] != NULL) {
         Brain::Instance()->Initiliaze(argv[3], neuronInput[0], weightInput[0], traiRate, momentRate);
     }
-    else{
+    else{*/
         Brain::Instance()->Initiliaze(numLayers,
                                       weightInput,
                                       neuronInput,
                                       traiRate, momentRate );
-    }
+   // }
  
     
     int sizeTestCases = (int)testCases.size();
@@ -146,7 +146,8 @@ int main(int argc, const char * argv[])
         }
         
         mse /= sizeTestCases;
-        
+        mp.x.push_back(epoch+1);
+        mp.y.push_back(mse);
         cout << epoch + 1 << ";" << mse << endl;
         
         if (mse < threshold)
@@ -163,7 +164,25 @@ int main(int argc, const char * argv[])
             controlOutputs.push_back( Brain::Instance()->Out());
         
         }
-        createBitmap(controlCases, controlOutputs);
+        for (int i = 0; i != (int)controlCases.size(); ++i) {
+
+                if (controlOutputs[i][0]  < 0.5) {
+                    mp.x2.push_back(controlCases[i][0]);
+                    mp.y2.push_back(controlCases[i][1]);
+                }
+            else
+            {
+                mp.x3.push_back(controlCases[i][0]);
+                mp.y3.push_back(controlCases[i][1]);
+            }
+                
+
+        }
+        
+        
+        
+        Plotear(argc,argv);
+   //     createBitmap(controlCases, controlOutputs);
     }
     
     

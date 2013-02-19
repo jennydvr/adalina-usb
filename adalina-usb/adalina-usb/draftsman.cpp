@@ -53,3 +53,23 @@ void createBitmap(vector<vector<float>> points, vector<vector<float>> results)
     // Salvo la imagen
     image.save_image("color_map_image.bmp");
 }
+MP mp;
+void display(){
+
+     mp.display();
+ }
+ void reshape(int w,int h){
+
+     mp.reshape(w,h);
+ }
+
+ void Plotear(int argc,  char * argv[])
+{
+    
+    glutInit(&argc, argv);
+    glutCreateWindow(100,100,800,400);
+    glutDisplayFunc( display );
+    glutReshapeFunc( reshape );
+    glutMainLoop();
+                  
+}
