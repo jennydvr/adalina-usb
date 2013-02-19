@@ -23,9 +23,19 @@ vector<vector<float>> controlCases;
 vector<vector<float>> controlResults;
 vector<vector<float>> controlOutputs;
 
+float minVal = numeric_limits<float>::max();
+float maxVal = numeric_limits<float>::min();
 
+void normalize(vector<vector<float>> &result)
+{
+    float n = maxVal - minVal;
+    
+    // Solo normalizar la primera (y unica) variable
+    for (int i = 0; i != result.size(); ++i)
+        result[i][0] = (result[i][0] - minVal) / n;
+}
 
-void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases,vector<vector<float>> &result )
+void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases, vector<vector<float>> &result)
 {
     string line;
     vector<string> strs;
@@ -55,6 +65,12 @@ void readInputs(const char * casesFile,const char  separator,vector<vector<float
         cases.push_back(testValues);
         
         resultValues.push_back((float)atof(strs[strs.size()-1].c_str()));
+        
+        if (resultValues[0] < minVal)
+            minVal = resultValues[0];
+        if (resultValues[0] > maxVal)
+            maxVal = resultValues[0];
+        
         result.push_back(resultValues);
         
 
@@ -107,13 +123,15 @@ int main(int argc, const char * argv[])
         takeDataPercent(100);
     }
     
+    normalize(testResults);
+    normalize(controlResults);
     
     numVariables = (int)testCases[0].size();
-    float threshold = 0.3;
+    float threshold = 0.01;
     float traiRate = 0.3;
-    float momentRate = 0.075f;
-    int numNeuHid = 10;
-    int MAX_ITER = 1000000;
+    float momentRate = 0.05;
+    int numNeuHid = 7;
+    int MAX_ITER = 10000;
     
     //---------------
     int numLayers = 3;
@@ -122,15 +140,15 @@ int main(int argc, const char * argv[])
 
     vector<int> weightInput = vector<int>(nNeuronas, nNeuronas + 3);
     vector<int> neuronInput = vector<int>(nPesos, nPesos + 3);
-    if (argv[3] != NULL) {
-        Brain::Instance()->Initiliaze(argv[3], neuronInput[0], weightInput[0], traiRate, momentRate);
-    }
-    else{
+   // if (argv[3] != NULL) {
+     //   Brain::Instance()->Initiliaze(argv[3], neuronInput[0], weightInput[0], traiRate, momentRate);
+    //}
+    //else{
         Brain::Instance()->Initiliaze(numLayers,
                                       weightInput,
                                       neuronInput,
                                       traiRate, momentRate );
-    }
+    //}
  
     
     int sizeTestCases = (int)testCases.size();
@@ -154,6 +172,7 @@ int main(int argc, const char * argv[])
     }
     
     //feedforward con los datos y luego pedir el output
+    
     Brain::Instance()->toFile("pesos.txt");
     if (controlCases.size() > 0) {
         
@@ -161,10 +180,11 @@ int main(int argc, const char * argv[])
             
             Brain::Instance()->FeedForward(controlCases[i]);
             controlOutputs.push_back( Brain::Instance()->Out());
-        
+            
         }
         createBitmap(controlCases, controlOutputs);
     }
+    
     
     
     return 0;

@@ -72,14 +72,15 @@ void Brain::Initiliaze( const char * file,int numNeuInput,int sizeWeiInput ,floa
     myfile.close();
     
 }
+
 float activationFunction(float sum)
 {
-    return 2.0 / (1.0 + exp(-sum)) - 1.0;
+    return 1.0 / (1.0 + exp(-sum));
 }
 
 void Brain::FeedForward(vector<float> input)
 {
-    _layers[0].updateOutput(input,NULL);
+    _layers[0].updateOutput(input, NULL);
     
     for (int i = 1; i < (int)_layers.size() ; ++i)
         _layers[i].updateOutput(_layers[i-1].getOutputs(),activationFunction);
