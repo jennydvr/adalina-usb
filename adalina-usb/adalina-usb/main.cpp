@@ -156,6 +156,7 @@ int main(int argc, const char * argv[])
     
     for (epoch = 0; epoch != MAX_ITER; ++epoch) {
         
+        // Entrenar
         float mse = 0.0;
         
         for (int c = 0; c != sizeTestCases; ++c) {
@@ -165,9 +166,21 @@ int main(int argc, const char * argv[])
         
         mse /= sizeTestCases;
         
-        cout << epoch + 1 << ";" << mse << endl;
         
-        if (mse < threshold)
+        // Probar
+        float pmse = 0.0;
+        
+        for (int c = 0; c != controlCases.size(); ++c) {
+            Brain::Instance()->FeedForward(controlCases[c]);
+            pmse += Brain::Instance()->calculateMSE(controlResults[c]);
+        }
+        
+        pmse /= controlCases.size();
+        
+        
+        cout << epoch + 1 << ";" << pmse << endl;
+        
+        if (pmse < threshold)
             break;
     }
     
