@@ -53,7 +53,7 @@ Neuron::Neuron(int numW, bool randomizeW)
 void Neuron::setDelta(float value)
 {
 
-    _deltaError = 0.5 * (1 - _output * _output) * value;
+    _deltaError = _output * (1 - _output) * value;
 }
 
 void Neuron::setWeight(float tr, float mr, std::vector<float> output)

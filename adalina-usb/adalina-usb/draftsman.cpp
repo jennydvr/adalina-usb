@@ -45,7 +45,7 @@ void createBitmap(vector<vector<float>> points, vector<vector<float>> results)
         }
         
         // Coloreo de acuerdo al resultado
-        col = results[i][0] == 1 ? blue : green;
+        col = results[i][0] < 0.5f ? blue : green;
         image.set_pixel(px, py, col.red, col.green, col.blue);
         
     }
