@@ -42,8 +42,6 @@ class MP :public MatPlot{
         }*/
         
         subplot(1,2,1);
-        axis(0, 10000, 0, 0.2);
-
         plot(x,y);set("r");
         plot(x1,y1);set("b");
         // To color lines
