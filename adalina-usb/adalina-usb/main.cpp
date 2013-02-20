@@ -186,9 +186,9 @@ int main(int argc,  char * argv[])
     
     numVariables = (int)testCases[0].size();
     float threshold = 0.01;
-    float traiRate = 0.1;
-    float momentRate = 0.1;
-    int numNeuHid = 9;
+    float traiRate = 0.7;
+    float momentRate = 0;
+    int numNeuHid = 2;
     int MAX_ITER = 10000;
     
     //---------------
@@ -218,24 +218,28 @@ int main(int argc,  char * argv[])
     for (epoch = 0; epoch != MAX_ITER; ++epoch) {
         
         // Entrenar
-        float mse = 0.0;
         
         for (int c = 0; c != sizeTestCases; ++c) {
             Brain::Instance()->BackPropagation(testCases[c], testResults[c]);
-            mse += Brain::Instance()->calculateMSE(testResults[c]);
         }
         
+        float mse = 0.0;
+        for (int c = 0; c != sizeTestCases; ++c) {
+            mse += Brain::Instance()->calculateMSE(testResults[c]);
+        }
         mse /= sizeTestCases;
         
         
         // Probar
-        float pmse = 0.0;
         
         for (int c = 0; c != controlCases.size(); ++c) {
             Brain::Instance()->FeedForward(controlCases[c]);
-            pmse += Brain::Instance()->calculateMSE(controlResults[c]);
         }
         
+        float pmse = 0.0;
+        for (int c = 0; c != controlCases.size(); ++c) {
+            pmse += Brain::Instance()->calculateMSE(controlResults[c]);
+        }
         pmse /= controlCases.size();
         
         cout << epoch + 1 << ";" << pmse << endl;

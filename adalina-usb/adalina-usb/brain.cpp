@@ -40,8 +40,8 @@ void Brain::Initiliaze( int numL, vector<int> sizeXL ,vector<int> sizeWN, float 
     _layers.push_back(Layer(OUTPUT_LAYER,sizeWN[numL-1], sizeXL[numL-1]));
     
     //Nguyen-Widrow initialization
-    for (int i = 1; i != numL; ++i)
-        _layers[i].NguyenWidrowInitialization(sizeXL[0]);
+    //for (int i = 1; i != numL; ++i)
+    //    _layers[i].NguyenWidrowInitialization(sizeXL[0]);
 }
 void Brain::Initiliaze( const char * file,int numNeuInput,int sizeWeiInput ,float TR, float MR )
 {
@@ -82,8 +82,10 @@ void Brain::FeedForward(vector<float> input)
 {
     _layers[0].updateOutput(input, NULL);
     
-    for (int i = 1; i < (int)_layers.size() ; ++i)
-        _layers[i].updateOutput(_layers[i-1].getOutputs(),activationFunction);
+    for (int i = 1; i < (int)_layers.size() ; ++i) {
+        vector<float> op = _layers[i-1].getOutputs();
+        _layers[i].updateOutput(op, activationFunction);
+    }
 }
 
 void Brain::updateDeltas(vector<float> expectedResult )
