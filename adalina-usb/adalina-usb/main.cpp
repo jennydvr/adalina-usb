@@ -137,6 +137,27 @@ void takeDataPercent(int percent)
     }
 }
 
+void fillPlotDataError(int valorX, float valorY, float valorY1)
+{
+    mp.x.push_back(valorX);
+    mp.y.push_back(valorY);
+    mp.x1.push_back(valorX);
+    mp.y1.push_back(valorY1);
+}
+void fillPlotDataCircle(){
+    for (int i = 0; i != (int)controlCases.size(); ++i) {
+        if (controlOutputs[i][0]  < 0.5) {
+            mp.x2.push_back(controlCases[i][0]);
+            mp.y2.push_back(controlCases[i][1]);
+        }
+        else
+        {
+            mp.x3.push_back(controlCases[i][0]);
+            mp.y3.push_back(controlCases[i][1]);
+        }
+    }
+    
+}
 int main(int argc,  char * argv[])
 {
     srand((unsigned)(time(NULL)));
@@ -191,6 +212,9 @@ int main(int argc,  char * argv[])
     int sizeTestCases = (int)testCases.size();
     int epoch;
     
+    int numPlotEpoch = 20;
+    int auxPlot = 0;
+    
     for (epoch = 0; epoch != MAX_ITER; ++epoch) {
         
         // Entrenar
@@ -214,10 +238,17 @@ int main(int argc,  char * argv[])
         
         pmse /= controlCases.size();
         
-        
         cout << epoch + 1 << ";" << pmse << endl;
-        mp.x.push_back(epoch+1);
-        mp.y.push_back(pmse);
+
+        
+        
+        if (auxPlot > numPlotEpoch) {
+         
+            fillPlotDataError(epoch+1, pmse, mse);
+            auxPlot = -1;
+        }
+        auxPlot++;
+
         
         if (pmse < threshold)
             break;
@@ -234,18 +265,7 @@ int main(int argc,  char * argv[])
             controlOutputs.push_back( Brain::Instance()->Out());
         }
         
-        for (int i = 0; i != (int)controlCases.size(); ++i) {
-            if (controlOutputs[i][0]  < 0.5) {
-                mp.x2.push_back(controlCases[i][0]);
-                mp.y2.push_back(controlCases[i][1]);
-            }
-            else
-            {
-                mp.x3.push_back(controlCases[i][0]);
-                mp.y3.push_back(controlCases[i][1]);
-            }
-        }
-        
+        fillPlotDataCircle();
         Plotear(argc, argv);
     }
     

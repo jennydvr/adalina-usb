@@ -42,7 +42,10 @@ class MP :public MatPlot{
         }*/
         
         subplot(1,2,1);
-        plot(x,y);
+        axis(0, 10000, 0, 0.2);
+
+        plot(x,y);set("r");
+        plot(x1,y1);set("b");
         // To color lines
         subplot(1,2,2);
         plot(x2,y2);set(".");set("r");//red
@@ -52,6 +55,8 @@ public:
     
     vector<double> x;
     vector<double> y;
+    vector<double> x1;
+    vector<double> y1;
     
     vector<double> x2;
     vector<double> y2;
