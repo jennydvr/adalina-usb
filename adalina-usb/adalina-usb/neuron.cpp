@@ -41,7 +41,7 @@ Neuron::Neuron(int numW, bool randomizeW)
     {
         unsigned int seed = (unsigned int)std::chrono::system_clock::now().time_since_epoch().count();
         std::default_random_engine generator(seed);
-        std::uniform_real_distribution<double> distribution(-1, 1);
+        std::uniform_real_distribution<double> distribution(-0.1, 0.1);
         
         for (int i = 0; i != numW; ++i) {
             _weights.push_back(distribution(generator));
@@ -52,7 +52,6 @@ Neuron::Neuron(int numW, bool randomizeW)
 
 void Neuron::setDelta(float value)
 {
-
     _deltaError = _output * (1 - _output) * value;
 }
 

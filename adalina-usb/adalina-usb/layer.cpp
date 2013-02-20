@@ -110,7 +110,7 @@ float Layer::getDifference(std::vector<float> expectedOut)
     float sum = 0;
     
     for (int i = 0; i != (int)_outp.size(); ++i) {
-        //std::cout <<"Expec: "<< expectedOut[i]<<" Out: "<<_outp[i] <<endl;
+        //std::cout <<"Expec: "<< expectedOut[i]<<"      Out: "<<_outp[i] <<endl;
         float aux = _outp[i] - expectedOut[i];
         sum += aux * aux;
     }
