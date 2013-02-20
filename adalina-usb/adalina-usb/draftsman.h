@@ -45,8 +45,8 @@ class MP :public MatPlot{
         plot(x,y);
         // To color lines
         subplot(1,2,2);
-        plot(x2,y2);set("*");set("r");//red
-        plot(x3,y3);set("*");set("b");//blue
+        plot(x2,y2);set(".");set("r");//red
+        plot(x3,y3);set(".");set("b");//blue
     }
 public:
     

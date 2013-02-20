@@ -16,23 +16,38 @@
 using namespace std;
 
 int numVariables;
+vector<vector<float>> normalizedTestCases;
 vector<vector<float>> testCases;
 vector<vector<float>> testResults;
 
+vector<vector<float>> normalizedControlCases;
 vector<vector<float>> controlCases;
 vector<vector<float>> controlResults;
 vector<vector<float>> controlOutputs;
 
-float minVal = numeric_limits<float>::max();
-float maxVal = numeric_limits<float>::min();
+vector<float> minVal;
+vector<float> maxVal;
 
-void normalize(vector<vector<float>> &result)
+void normalizeCases(vector<vector<float>> &cases, vector<vector<float>> &normcases)
 {
-    float n = maxVal - minVal;
+    int nvar = (int)cases[0].size();
+    int ncases = (int)cases.size();
     
-    // Solo normalizar la primera (y unica) variable
-    for (int i = 0; i != result.size(); ++i)
-        result[i][0] = (result[i][0] - minVal) / n;
+    
+    for (int i = 0; i != nvar; ++i) {
+        float n = maxVal[i] - minVal[i];
+        
+        for (int j = 0; j != ncases; ++j)
+            normcases[j][i] = (cases[j][i] - minVal[i]) / n;
+    }
+}
+
+void normalizeResults(vector<vector<float>> &results)
+{
+    float n = maxVal[maxVal.size() - 1] - minVal[minVal.size() - 1];
+    
+    for (int i = 0; i != results.size(); ++i)
+        results[i][0] = (results[i][0] - minVal[minVal.size() - 1]) / n;
 }
 
 void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases, vector<vector<float>> &result)
@@ -62,14 +77,28 @@ void readInputs(const char * casesFile,const char  separator,vector<vector<float
             
         }
         
+        if (minVal.size() == 0)
+            minVal = vector<float>(strs.size(), numeric_limits<float>::max());
+        
+        if (maxVal.size() == 0)
+            maxVal = vector<float>(strs.size(), numeric_limits<float>::min());
+        
+        for (int i = 0; i != testValues.size(); ++i) {
+            if (testValues[i] < minVal[i])
+                minVal[i] = testValues[i];
+            if (testValues[i] > maxVal[i])
+                maxVal[i] = testValues[i];
+        }
+
+        
         cases.push_back(testValues);
         
         resultValues.push_back((float)atof(strs[strs.size()-1].c_str()));
         
-        if (resultValues[0] < minVal)
-            minVal = resultValues[0];
-        if (resultValues[0] > maxVal)
-            maxVal = resultValues[0];
+        if (resultValues[0] < minVal[minVal.size() - 1])
+            minVal[minVal.size() - 1] = resultValues[0];
+        if (resultValues[0] > maxVal[maxVal.size() - 1])
+            maxVal[maxVal.size() - 1] = resultValues[0];
         
         result.push_back(resultValues);
         
@@ -114,6 +143,13 @@ int main(int argc,  char * argv[])
     
     readInputs(argv[1],' ',testCases, testResults);
     
+   // normalizedTestCases = testCases;
+   // normalizeCases(testCases, normalizedTestCases);
+    normalizeResults(testResults);
+    
+    minVal.clear();
+    maxVal.clear();
+    
     
     if (argv[2] != NULL) {
         readInputs(argv[2],' ',controlCases, controlResults);
@@ -123,14 +159,15 @@ int main(int argc,  char * argv[])
         takeDataPercent(100);
     }
     
-    normalize(testResults);
-    normalize(controlResults);
+   // normalizedControlCases = controlCases;
+   // normalizeCases(controlCases, normalizedControlCases);
+    normalizeResults(controlResults);
     
     numVariables = (int)testCases[0].size();
     float threshold = 0.01;
-    float traiRate = 0.3;
-    float momentRate = 0.05;
-    int numNeuHid = 7;
+    float traiRate = 0.1;
+    float momentRate = 0.1;
+    int numNeuHid = 9;
     int MAX_ITER = 10000;
     
     //---------------
@@ -167,7 +204,6 @@ int main(int argc,  char * argv[])
         mse /= sizeTestCases;
         
         
-        
         // Probar
         float pmse = 0.0;
         
@@ -190,36 +226,28 @@ int main(int argc,  char * argv[])
     //feedforward con los datos y luego pedir el output
     
     Brain::Instance()->toFile("pesos.txt");
+    
     if (controlCases.size() > 0) {
         
-        for (int i = 0; i != (int)controlCases.size(); i++) {
-            
+        for (int i = 0; i != (int)controlCases.size(); ++i) {
             Brain::Instance()->FeedForward(controlCases[i]);
             controlOutputs.push_back( Brain::Instance()->Out());
-            
         }
+        
         for (int i = 0; i != (int)controlCases.size(); ++i) {
-
-                if (controlOutputs[i][0]  < 0.5) {
-                    mp.x2.push_back(controlCases[i][0]);
-                    mp.y2.push_back(controlCases[i][1]);
-                }
+            if (controlOutputs[i][0]  < 0.5) {
+                mp.x2.push_back(controlCases[i][0]);
+                mp.y2.push_back(controlCases[i][1]);
+            }
             else
             {
                 mp.x3.push_back(controlCases[i][0]);
                 mp.y3.push_back(controlCases[i][1]);
             }
-                
-
         }
         
-        
-        
-        Plotear(argc,argv);
-   //     createBitmap(controlCases, controlOutputs);
+        Plotear(argc, argv);
     }
-    
-    
     
     return 0;
 }
