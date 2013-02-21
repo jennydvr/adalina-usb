@@ -127,10 +127,12 @@ void takeDataPercent(int percent)
     int awayData = ((100 - percent) * (int)testCases.size() ) / 100;
     for (int i = 0; i < awayData; i++)
     {
-        controlResults.push_back(testResults.back());
-        testResults.pop_back();
-        controlCases.push_back(testCases.back());
-        testCases.pop_back();
+        int index = rand() % testCases.size();
+        controlCases.push_back(testCases[index]);
+        testCases.erase(testCases.begin() + index);
+        
+        controlResults.push_back(testResults[index]);
+        testResults.erase(testResults.begin() + index);
     }
     if ((int)testCases.size() < 1)
     {
@@ -166,8 +168,6 @@ int main(int argc,  char * argv[])
     
     readInputs(argv[1],',',testCases, testResults);
     
-   // normalizedTestCases = testCases;
-   // normalizeCases(testCases, normalizedTestCases);
     normalizeResults(testResults);
     
     minVal.clear();
@@ -186,11 +186,11 @@ int main(int argc,  char * argv[])
  //   normalizeResults(controlResults);
     
     numVariables = (int)testCases[0].size();
-    float threshold = 0.01;
-    float traiRate = 0.7;
-    float momentRate = 0;
+    float threshold = 0.15;
+    float traiRate = 0.01;
+    float momentRate = 0.03;
     int numNeuHid = 10;
-    int MAX_ITER = 5000;
+    int MAX_ITER = 20000;
     
     //---------------
     int numLayers = 3;
@@ -233,26 +233,32 @@ int main(int argc,  char * argv[])
         
         
         // Probar
-        
         float pmse = 0.0;
         for (int c = 0; c != controlCases.size(); ++c) {
             Brain::Instance()->FeedForward(controlCases[c]);
+
             pmse += Brain::Instance()->calculateMSE(controlResults[c]);
         }
         pmse /= controlCases.size();
         
         
-        cout << epoch + 1 << "  " << mse << endl;
-        mp.x.push_back(epoch+1);
-        mp.y.push_back(pmse);
+        cout << epoch + 1 << "  " << mse << "  " << pmse << endl;
+     
+        
+        
+        if (auxPlot > numPlotEpoch) {
+         
+            fillPlotDataError(epoch+1, pmse, mse);
+            auxPlot = -1;
+        }
+        auxPlot++;
+
         
         if (pmse < threshold)
             break;
     }
     
     //feedforward con los datos y luego pedir el output
-    
-   // Brain::Instance()->toFile("pesos.txt");
     
     if (controlCases.size() > 0) {
         
