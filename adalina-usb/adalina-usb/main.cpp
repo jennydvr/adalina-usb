@@ -47,7 +47,10 @@ void normalizeResults(vector<vector<float>> &results)
     float n = maxVal[maxVal.size() - 1] - minVal[minVal.size() - 1];
     
     for (int i = 0; i != results.size(); ++i)
+    {
         results[i][0] = (results[i][0] - minVal[minVal.size() - 1]) / n;
+    }
+    
 }
 
 void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases, vector<vector<float>> &result)
@@ -92,7 +95,6 @@ void readInputs(const char * casesFile,const char  separator,vector<vector<float
 
         
         cases.push_back(testValues);
-        
         resultValues.push_back((float)atof(strs[strs.size()-1].c_str()));
         
         if (resultValues[0] < minVal[minVal.size() - 1])
@@ -162,7 +164,7 @@ int main(int argc,  char * argv[])
 {
     srand((unsigned)(time(NULL)));
     
-    readInputs(argv[1],' ',testCases, testResults);
+    readInputs(argv[1],',',testCases, testResults);
     
    // normalizedTestCases = testCases;
    // normalizeCases(testCases, normalizedTestCases);
@@ -171,22 +173,21 @@ int main(int argc,  char * argv[])
     minVal.clear();
     maxVal.clear();
     
-    
-    if (argv[2] != NULL) {
+    takeDataPercent(atoi(argv[2]));
+
+    /*if (argv[2] != NULL) {
         readInputs(argv[2],' ',controlCases, controlResults);
     }
     else{
 
-        takeDataPercent(100);
-    }
+     }*/
     
-   // normalizedControlCases = controlCases;
-   // normalizeCases(controlCases, normalizedControlCases);
-    normalizeResults(controlResults);
+
+ //   normalizeResults(controlResults);
     
     numVariables = (int)testCases[0].size();
     float threshold = 0.01;
-    float traiRate = 0.1;
+    float traiRate = 0.01;
     float momentRate = 0.001;
     int numNeuHid = 10;
     int MAX_ITER = 5000;
@@ -264,7 +265,7 @@ int main(int argc,  char * argv[])
     
     //feedforward con los datos y luego pedir el output
     
-    Brain::Instance()->toFile("pesos.txt");
+   // Brain::Instance()->toFile("pesos.txt");
     
     if (controlCases.size() > 0) {
         

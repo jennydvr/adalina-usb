@@ -41,13 +41,13 @@ class MP :public MatPlot{
             }
         }*/
         
-        subplot(1,2,1);
+        //subplot(1,2,1);
         plot(x,y);set("r");
         plot(x1,y1);set("b");
         // To color lines
-        subplot(1,2,2);
+       /* subplot(1,2,2);
         plot(x2,y2);set(".");set("r");//red
-        plot(x3,y3);set(".");set("b");//blue
+        plot(x3,y3);set(".");set("b");//blue*/
     }
 public:
     
