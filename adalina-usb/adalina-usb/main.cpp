@@ -47,7 +47,10 @@ void normalizeResults(vector<vector<float>> &results)
     float n = maxVal[maxVal.size() - 1] - minVal[minVal.size() - 1];
     
     for (int i = 0; i != results.size(); ++i)
+    {
         results[i][0] = (results[i][0] - minVal[minVal.size() - 1]) / n;
+    }
+    
 }
 
 void readInputs(const char * casesFile,const char  separator,vector<vector<float>> &cases, vector<vector<float>> &result)
@@ -92,7 +95,6 @@ void readInputs(const char * casesFile,const char  separator,vector<vector<float
 
         
         cases.push_back(testValues);
-        
         resultValues.push_back((float)atof(strs[strs.size()-1].c_str()));
         
         if (resultValues[0] < minVal[minVal.size() - 1])
@@ -137,11 +139,32 @@ void takeDataPercent(int percent)
     }
 }
 
+void fillPlotDataError(int valorX, float valorY, float valorY1)
+{
+    mp.x.push_back(valorX);
+    mp.y.push_back(valorY);
+    mp.x1.push_back(valorX);
+    mp.y1.push_back(valorY1);
+}
+void fillPlotDataCircle(){
+    for (int i = 0; i != (int)controlCases.size(); ++i) {
+        if (controlOutputs[i][0]  < 0.5) {
+            mp.x2.push_back(controlCases[i][0]);
+            mp.y2.push_back(controlCases[i][1]);
+        }
+        else
+        {
+            mp.x3.push_back(controlCases[i][0]);
+            mp.y3.push_back(controlCases[i][1]);
+        }
+    }
+    
+}
 int main(int argc,  char * argv[])
 {
     srand((unsigned)(time(NULL)));
     
-    readInputs(argv[1],' ',testCases, testResults);
+    readInputs(argv[1],',',testCases, testResults);
     
    // normalizedTestCases = testCases;
    // normalizeCases(testCases, normalizedTestCases);
@@ -150,18 +173,17 @@ int main(int argc,  char * argv[])
     minVal.clear();
     maxVal.clear();
     
-    
-    if (argv[2] != NULL) {
+    takeDataPercent(atoi(argv[2]));
+
+    /*if (argv[2] != NULL) {
         readInputs(argv[2],' ',controlCases, controlResults);
     }
     else{
 
-        takeDataPercent(100);
-    }
+     }*/
     
-   // normalizedControlCases = controlCases;
-   // normalizeCases(controlCases, normalizedControlCases);
-    normalizeResults(controlResults);
+
+ //   normalizeResults(controlResults);
     
     numVariables = (int)testCases[0].size();
     float threshold = 0.01;
@@ -190,6 +212,9 @@ int main(int argc,  char * argv[])
     
     int sizeTestCases = (int)testCases.size();
     int epoch;
+    
+    int numPlotEpoch = 20;
+    int auxPlot = 0;
     
     for (epoch = 0; epoch != MAX_ITER; ++epoch) {
         
@@ -227,7 +252,7 @@ int main(int argc,  char * argv[])
     
     //feedforward con los datos y luego pedir el output
     
-    Brain::Instance()->toFile("pesos.txt");
+   // Brain::Instance()->toFile("pesos.txt");
     
     if (controlCases.size() > 0) {
         
@@ -236,18 +261,7 @@ int main(int argc,  char * argv[])
             controlOutputs.push_back( Brain::Instance()->Out());
         }
         
-        for (int i = 0; i != (int)controlCases.size(); ++i) {
-            if (controlOutputs[i][0]  < 0.5) {
-                mp.x2.push_back(controlCases[i][0]);
-                mp.y2.push_back(controlCases[i][1]);
-            }
-            else
-            {
-                mp.x3.push_back(controlCases[i][0]);
-                mp.y3.push_back(controlCases[i][1]);
-            }
-        }
-        
+        fillPlotDataCircle();
         Plotear(argc, argv);
     }
     
