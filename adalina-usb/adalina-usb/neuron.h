@@ -48,7 +48,7 @@ public:
     void setDelta(float value);
     
     //Actualiza los pesos
-    void setWeight(float tr, float mr, std::vector<float> output);
+    void setWeight(float tr, float mr, std::vector<float> input);
     
     //Actualiza los pesos (inicializacion de Nguyen-Widrow)
     void NguyenWidrowInitialization(float beta);

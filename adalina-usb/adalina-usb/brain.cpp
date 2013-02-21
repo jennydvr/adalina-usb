@@ -40,9 +40,10 @@ void Brain::Initiliaze( int numL, vector<int> sizeXL ,vector<int> sizeWN, float 
     _layers.push_back(Layer(OUTPUT_LAYER,sizeWN[numL-1], sizeXL[numL-1]));
     
     //Nguyen-Widrow initialization
-    //for (int i = 1; i != numL; ++i)
-    //    _layers[i].NguyenWidrowInitialization(sizeXL[0]);
+    for (int i = 1; i != numL; ++i)
+        _layers[i].NguyenWidrowInitialization(sizeXL[0]);
 }
+
 void Brain::Initiliaze( const char * file,int numNeuInput,int sizeWeiInput ,float TR, float MR )
 {
     _trainingRate = TR;

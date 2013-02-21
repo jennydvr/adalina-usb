@@ -47,7 +47,7 @@ public:
      */
     void updateOutput(std::vector<float> outputs, float (* activationF)(float));
     
-    void updateWeight(float tr, float mr, std::vector<float> outputs);
+    void updateWeight(float tr, float mr, std::vector<float> inputs);
 
     float getSumWeightNeurons(int pos);
     

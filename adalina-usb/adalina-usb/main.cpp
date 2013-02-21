@@ -167,8 +167,8 @@ int main(int argc,  char * argv[])
     float threshold = 0.01;
     float traiRate = 0.7;
     float momentRate = 0;
-    int numNeuHid = 2;
-    int MAX_ITER = 10000;
+    int numNeuHid = 10;
+    int MAX_ITER = 5000;
     
     //---------------
     int numLayers = 3;
@@ -201,6 +201,7 @@ int main(int argc,  char * argv[])
         
         float mse = 0.0;
         for (int c = 0; c != sizeTestCases; ++c) {
+            Brain::Instance()->FeedForward(testCases[c]);
             mse += Brain::Instance()->calculateMSE(testResults[c]);
         }
         mse /= sizeTestCases;
@@ -208,18 +209,15 @@ int main(int argc,  char * argv[])
         
         // Probar
         
-        for (int c = 0; c != controlCases.size(); ++c) {
-            Brain::Instance()->FeedForward(controlCases[c]);
-        }
-        
         float pmse = 0.0;
         for (int c = 0; c != controlCases.size(); ++c) {
+            Brain::Instance()->FeedForward(controlCases[c]);
             pmse += Brain::Instance()->calculateMSE(controlResults[c]);
         }
         pmse /= controlCases.size();
         
         
-        cout << epoch + 1 << "  " << mse << "  " << pmse << endl;
+        cout << epoch + 1 << "  " << mse << endl;
         mp.x.push_back(epoch+1);
         mp.y.push_back(pmse);
         

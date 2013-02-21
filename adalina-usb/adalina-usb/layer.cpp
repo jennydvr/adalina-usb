@@ -94,10 +94,10 @@ void Layer::updateOutput(std::vector<float> outputs,float (* activationF)(float)
     }
 }
 
-void Layer::updateWeight(float tr, float mr, std::vector<float> outputs)
+void Layer::updateWeight(float tr, float mr, std::vector<float> inputs)
 {
     for (int j = 0; j != (int)_neurons.size(); ++j)
-        _neurons[j].setWeight(tr, mr, outputs);
+        _neurons[j].setWeight(tr, mr, inputs);
 }
 
 std::vector<float> Layer::getOutputs()
