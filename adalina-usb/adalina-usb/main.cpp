@@ -186,10 +186,10 @@ int main(int argc,  char * argv[])
     
     numVariables = (int)testCases[0].size();
     float threshold = 0.01;
-    float traiRate = 0.3;
-    float momentRate = 0.01;
-    int numNeuHid = 2;
-    int MAX_ITER = 10000;
+    float traiRate = 0.1;
+    float momentRate = 0.001;
+    int numNeuHid = 10;
+    int MAX_ITER = 5000;
     
     //---------------
     int numLayers = 3;
@@ -264,7 +264,7 @@ int main(int argc,  char * argv[])
     
     //feedforward con los datos y luego pedir el output
     
-    //Brain::Instance()->toFile("pesos.txt");
+    Brain::Instance()->toFile("pesos.txt");
     
     if (controlCases.size() > 0) {
         
